@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>لوحة تحكم مشاريع عمران | الزوايا الذهبية</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Montserrat:wght@400;600;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#0F2342;--navy2:#1B3A5C;--gold:#D4A520;--gold2:#F0B429;
+  --blue:#0369A1;--blue2:#0EA5E9;
+  --orange:#C2410C;--orange2:#F97316;
+  --green:#166534;--green2:#22C55E;
+  --red:#991B1B;--red2:#EF4444;
+  --purple:#4C1D95;--purple2:#8B5CF6;
+  --amber:#92400E;--amber2:#F59E0B;
+  --bg:#0D1B2A;--card:#142030;--card2:#1A2B3E;
+  --border:#1E3A5C;--text:#E2E8F0;--muted:#7A9BB5;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;}
+
+/* ── NAV ── */
+.nav{background:linear-gradient(135deg,var(--navy),var(--navy2));padding:12px 28px;display:flex;justify-content:space-between;align-items:center;border-bottom:2px solid var(--gold);position:sticky;top:0;z-index:100;}
+.nav-logo{font-family:'Montserrat',sans-serif;font-size:14px;font-weight:900;color:var(--gold);letter-spacing:2px;}
+.nav-sub{font-size:11px;color:var(--muted);}
+.nav-date{font-family:'Montserrat',sans-serif;font-size:11px;color:var(--muted);direction:ltr;}
+
+/* ── TABS ── */
+.tabs{display:flex;gap:4px;padding:16px 28px 0;background:var(--navy);}
+.tab{padding:10px 22px;border-radius:8px 8px 0 0;cursor:pointer;font-size:12px;font-weight:700;transition:all .2s;border:1px solid transparent;border-bottom:none;}
+.tab.active{background:var(--bg);color:var(--gold);border-color:var(--border);}
+.tab:not(.active){background:rgba(255,255,255,.05);color:var(--muted);}
+.tab:not(.active):hover{color:var(--text);}
+
+/* ── PAGES ── */
+.page{display:none;padding:24px 28px;}
+.page.active{display:block;}
+
+/* ── GRID ── */
+.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.grid-12{display:grid;grid-template-columns:1fr 2fr;gap:14px;}
+
+/* ── KPI CARD ── */
+.kpi{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:18px;position:relative;overflow:hidden;}
+.kpi::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;}
+.kpi.blue::before{background:linear-gradient(90deg,var(--blue),var(--blue2));}
+.kpi.gold::before{background:linear-gradient(90deg,var(--gold),var(--gold2));}
+.kpi.green::before{background:linear-gradient(90deg,var(--green),var(--green2));}
+.kpi.orange::before{background:linear-gradient(90deg,var(--orange),var(--orange2));}
+.kpi.red::before{background:linear-gradient(90deg,var(--red),var(--red2));}
+.kpi.purple::before{background:linear-gradient(90deg,var(--purple),var(--purple2));}
+.kpi.amber::before{background:linear-gradient(90deg,var(--amber),var(--amber2));}
+.kpi-label{font-size:10px;color:var(--muted);font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:6px;}
+.kpi-value{font-family:'Montserrat',sans-serif;font-size:22px;font-weight:900;margin-bottom:3px;}
+.kpi-sub{font-size:10px;color:var(--muted);}
+.kpi.blue .kpi-value{color:var(--blue2);}
+.kpi.gold .kpi-value{color:var(--gold);}
+.kpi.green .kpi-value{color:var(--green2);}
+.kpi.orange .kpi-value{color:var(--orange2);}
+.kpi.red .kpi-value{color:var(--red2);}
+.kpi.purple .kpi-value{color:var(--purple2);}
+.kpi.amber .kpi-value{color:var(--amber2);}
+.kpi-icon{position:absolute;top:16px;left:16px;font-size:24px;opacity:.2;}
+
+/* ── SECTION ── */
+.section{background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:16px;}
+.section-head{padding:14px 20px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border);}
+.section-head h3{font-size:13px;font-weight:800;display:flex;align-items:center;gap:8px;}
+.section-head .badge{font-family:'Montserrat',sans-serif;font-size:9px;font-weight:700;padding:3px 9px;border-radius:12px;letter-spacing:1px;text-transform:uppercase;}
+.badge-blue{background:rgba(3,105,161,.25);color:var(--blue2);border:1px solid var(--blue);}
+.badge-orange{background:rgba(194,65,12,.25);color:var(--orange2);border:1px solid var(--orange);}
+.badge-green{background:rgba(22,101,52,.25);color:var(--green2);border:1px solid var(--green);}
+.badge-red{background:rgba(153,27,27,.25);color:var(--red2);border:1px solid var(--red);}
+.badge-amber{background:rgba(146,64,14,.25);color:var(--amber2);border:1px solid var(--amber);}
+.badge-gold{background:rgba(212,165,32,.2);color:var(--gold);border:1px solid var(--gold);}
+
+/* ── TABLE ── */
+table{width:100%;border-collapse:collapse;}
+th{background:rgba(255,255,255,.04);padding:9px 14px;text-align:right;font-size:10px;font-weight:700;color:var(--muted);letter-spacing:.5px;border-bottom:1px solid var(--border);}
+th.ltr{direction:ltr;text-align:left;}
+td{padding:9px 14px;font-size:11px;border-bottom:1px solid rgba(30,58,92,.4);vertical-align:middle;}
+tr:last-child td{border-bottom:none;}
+tr:hover td{background:rgba(255,255,255,.02);}
+.td-num{font-family:'Montserrat',sans-serif;font-size:12px;font-weight:700;direction:ltr;text-align:left;}
+.td-green{color:var(--green2);}
+.td-red{color:var(--red2);}
+.td-gold{color:var(--gold);}
+.td-blue{color:var(--blue2);}
+.td-muted{color:var(--muted);}
+.td-orange{color:var(--orange2);}
+.td-amber{color:var(--amber2);}
+
+/* ── PROGRESS BAR ── */
+.prog-wrap{background:rgba(255,255,255,.06);border-radius:8px;height:8px;overflow:hidden;}
+.prog-bar{height:100%;border-radius:8px;transition:width .5s;}
+.prog-blue{background:linear-gradient(90deg,var(--blue),var(--blue2));}
+.prog-gold{background:linear-gradient(90deg,var(--gold),var(--gold2));}
+.prog-green{background:linear-gradient(90deg,var(--green),var(--green2));}
+.prog-orange{background:linear-gradient(90deg,var(--orange),var(--orange2));}
+.prog-red{background:linear-gradient(90deg,var(--red),var(--red2));}
+
+/* ── TIMELINE ── */
+.timeline{padding:20px;}
+.tl-item{display:grid;grid-template-columns:120px 24px 1fr;gap:0 14px;align-items:start;margin-bottom:0;}
+.tl-date{font-family:'Montserrat',sans-serif;font-size:9px;color:var(--muted);text-align:left;direction:ltr;padding-top:2px;line-height:1.6;}
+.tl-line-wrap{display:flex;flex-direction:column;align-items:center;}
+.tl-dot{width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;flex-shrink:0;border:2px solid transparent;}
+.tl-dot.done{background:var(--green);border-color:var(--green2);color:#fff;}
+.tl-dot.progress{background:var(--amber);border-color:var(--amber2);color:#fff;}
+.tl-dot.blocked{background:var(--red);border-color:var(--red2);color:#fff;}
+.tl-dot.pending{background:var(--navy2);border-color:var(--border);color:var(--muted);}
+.tl-connector{width:2px;flex:1;min-height:24px;background:var(--border);margin:3px 0;}
+.tl-connector.done{background:var(--green);}
+.tl-connector.progress{background:linear-gradient(var(--green),var(--border));}
+.tl-content{padding-bottom:20px;}
+.tl-title{font-size:12px;font-weight:800;margin-bottom:3px;}
+.tl-detail{font-size:10px;color:var(--muted);line-height:1.7;}
+.tl-tag{display:inline-block;font-size:9px;font-weight:700;padding:2px 8px;border-radius:8px;margin-top:4px;font-family:'Montserrat',sans-serif;}
+.tl-tag.done{background:rgba(22,101,52,.3);color:var(--green2);}
+.tl-tag.progress{background:rgba(146,64,14,.3);color:var(--amber2);}
+.tl-tag.blocked{background:rgba(153,27,27,.3);color:var(--red2);}
+.tl-tag.pending{background:rgba(30,58,92,.5);color:var(--muted);}
+
+/* ── RISK CARD ── */
+.risk-card{border-radius:10px;padding:14px 16px;margin-bottom:10px;border-right:4px solid transparent;}
+.risk-card.high{background:rgba(153,27,27,.12);border-color:var(--red2);}
+.risk-card.med{background:rgba(146,64,14,.12);border-color:var(--amber2);}
+.risk-card.low{background:rgba(22,101,52,.12);border-color:var(--green2);}
+.risk-title{font-size:11.5px;font-weight:800;margin-bottom:4px;display:flex;align-items:center;gap:7px;}
+.risk-body{font-size:10px;color:var(--muted);line-height:1.8;}
+.risk-action{margin-top:8px;background:rgba(255,255,255,.04);border-radius:6px;padding:7px 10px;font-size:10px;color:var(--text);}
+.risk-action::before{content:'⚡ الإجراء: ';color:var(--gold);font-weight:800;}
+
+/* ── PARTNER CARD ── */
+.partner{background:var(--card2);border:1px solid var(--border);border-radius:10px;padding:16px;text-align:center;}
+.partner-avatar{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,var(--navy2),var(--blue));display:flex;align-items:center;justify-content:center;font-size:18px;margin:0 auto 8px;}
+.partner-name{font-size:12px;font-weight:800;margin-bottom:3px;}
+.partner-role{font-size:9.5px;color:var(--muted);margin-bottom:10px;}
+.partner-amount{font-family:'Montserrat',sans-serif;font-size:16px;font-weight:900;color:var(--green2);}
+.partner-label{font-size:9px;color:var(--muted);}
+
+/* ── LEGAL BOX ── */
+.legal-box{background:var(--card2);border-radius:10px;padding:16px;margin-bottom:10px;}
+.legal-box h4{font-size:11px;font-weight:800;color:var(--gold);margin-bottom:8px;display:flex;align-items:center;gap:6px;}
+.legal-box p{font-size:10px;color:var(--muted);line-height:1.9;}
+.legal-box strong{color:var(--text);}
+
+/* ── STATUS PILL ── */
+.pill{display:inline-flex;align-items:center;gap:5px;font-size:9px;font-weight:700;padding:3px 9px;border-radius:12px;font-family:'Montserrat',sans-serif;}
+.pill-green{background:rgba(22,101,52,.3);color:var(--green2);}
+.pill-red{background:rgba(153,27,27,.3);color:var(--red2);}
+.pill-amber{background:rgba(146,64,14,.3);color:var(--amber2);}
+.pill-blue{background:rgba(3,105,161,.3);color:var(--blue2);}
+
+/* ── SECTION DIVIDER ── */
+.divider{height:1px;background:linear-gradient(90deg,transparent,var(--border),transparent);margin:16px 0;}
+h2.page-title{font-size:16px;font-weight:900;color:var(--text);margin-bottom:16px;display:flex;align-items:center;gap:10px;padding-bottom:12px;border-bottom:1px solid var(--border);}
+h2.page-title span{font-size:10px;color:var(--muted);font-weight:400;}
+
+/* ── ALERT ── */
+.alert{border-radius:8px;padding:10px 14px;font-size:10.5px;line-height:1.8;margin-bottom:10px;}
+.alert-red{background:rgba(153,27,27,.15);border:1px solid var(--red);color:var(--text);}
+.alert-amber{background:rgba(146,64,14,.15);border:1px solid var(--amber2);color:var(--text);}
+.alert-green{background:rgba(22,101,52,.15);border:1px solid var(--green);color:var(--text);}
+.alert-gold{background:rgba(212,165,32,.1);border:1px solid var(--gold);color:var(--text);}
+.alert b{font-weight:800;}
+
+@media(max-width:900px){.grid-4,.grid-3,.grid-2,.grid-12{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+
+<div class="nav">
+  <div>
+    <div class="nav-logo">⚙️ OMRAN PROJECT DASHBOARD</div>
+    <div class="nav-sub">الزوايا الذهبية × شركة عُمان للتنمية السياحية — داخلي سري</div>
+  </div>
+  <div class="nav-date">آخر تحديث: مارس 2026 | 3 شركاء</div>
+</div>
+
+<!-- TABS -->
+<div class="tabs">
+  <div class="tab active" onclick="showTab('overview')">🏠 نظرة عامة</div>
+  <div class="tab" onclick="showTab('p1761')">📦 1761 — استيراد الدوم</div>
+  <div class="tab" onclick="showTab('p1762')">🎬 1762 — المحتوى والتنفيذ</div>
+  <div class="tab" onclick="showTab('legal')">⚖️ القانوني والمخاطر</div>
+  <div class="tab" onclick="showTab('partners')">👥 التوزيع والشركاء</div>
+</div>
+
+<!-- ═══════════════════════════════ PAGE: OVERVIEW ═══════════════════════════════ -->
+<div class="page active" id="tab-overview">
+  <h2 class="page-title">📊 نظرة شاملة على المشروعين <span>مشروع 1761 + مشروع 1762</span></h2>
+
+  <div class="grid-4" style="margin-bottom:16px;">
+    <div class="kpi gold">
+      <div class="kpi-icon">💰</div>
+      <div class="kpi-label">إجمالي قيمة العقدين</div>
+      <div class="kpi-value">96,051</div>
+      <div class="kpi-sub">ريال عماني (بعد VAT)</div>
+    </div>
+    <div class="kpi green">
+      <div class="kpi-icon">✅</div>
+      <div class="kpi-label">المقبوض من عمران</div>
+      <div class="kpi-value">50,999</div>
+      <div class="kpi-sub">36,301 + 14,698 ريال</div>
+    </div>
+    <div class="kpi amber">
+      <div class="kpi-icon">⏳</div>
+      <div class="kpi-label">المتبقي لاستلامه</div>
+      <div class="kpi-value">47,480</div>
+      <div class="kpi-sub">14,817 + 32,663 ريال</div>
+    </div>
+    <div class="kpi blue">
+      <div class="kpi-icon">👥</div>
+      <div class="kpi-label">صافي الربح للكل</div>
+      <div class="kpi-value">56,674</div>
+      <div class="kpi-sub">18,891 لكل شريك</div>
+    </div>
+  </div>
+
+  <div class="grid-2">
+    <!-- 1761 summary -->
+    <div class="section">
+      <div class="section-head">
+        <h3>📦 مشروع 1761 — استيراد معدات الدوم</h3>
+        <span class="badge badge-amber">مُعلَّق</span>
+      </div>
+      <div style="padding:16px;">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
+          <span style="font-size:11px;color:var(--muted);">نسبة الإنجاز الكلي</span>
+          <span style="font-family:'Montserrat';font-size:12px;font-weight:700;color:var(--amber2);">70%</span>
+        </div>
+        <div class="prog-wrap" style="margin-bottom:14px;"><div class="prog-bar prog-orange" style="width:70%"></div></div>
+        <table>
+          <tr><td>قيمة العقد (إجمالي)</td><td class="td-num td-gold">51,858 OMR</td></tr>
+          <tr><td>بعد خصم VAT 5%</td><td class="td-num td-blue">49,389 OMR</td></tr>
+          <tr><td>المقبوض (70%)</td><td class="td-num td-green">36,301 OMR ✅</td></tr>
+          <tr><td>المتبقي (30%)</td><td class="td-num td-amber">14,817 OMR ⏳</td></tr>
+          <tr><td>مصاريف الصين</td><td class="td-num td-red">-29,492 OMR</td></tr>
+          <tr><td><strong>الربح الصافي المتوقع</strong></td><td class="td-num td-green" style="font-size:14px;">19,156 OMR</td></tr>
+        </table>
+        <div style="margin-top:10px;">
+          <div class="alert alert-red">⚠️ <b>الدوم وصل</b> لكن <b>عمران لم يحدد الموقع</b> — التركيب مُعلَّق!</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 1762 summary -->
+    <div class="section">
+      <div class="section-head">
+        <h3>🎬 مشروع 1762 — المحتوى والتنفيذ</h3>
+        <span class="badge badge-amber">قيد التنفيذ</span>
+      </div>
+      <div style="padding:16px;">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
+          <span style="font-size:11px;color:var(--muted);">نسبة إنجاز المحتوى</span>
+          <span style="font-family:'Montserrat';font-size:12px;font-weight:700;color:var(--amber2);">60%</span>
+        </div>
+        <div class="prog-wrap" style="margin-bottom:14px;"><div class="prog-bar prog-blue" style="width:60%"></div></div>
+        <table>
+          <tr><td>قيمة العقد (إجمالي)</td><td class="td-num td-gold">48,995 OMR</td></tr>
+          <tr><td>بعد خصم VAT 5%</td><td class="td-num td-blue">46,662 OMR</td></tr>
+          <tr><td>المقبوض (30%)</td><td class="td-num td-green">14,699 OMR ✅</td></tr>
+          <tr><td>المتبقي (70%)</td><td class="td-num td-amber">32,663 OMR ⏳</td></tr>
+          <tr><td>مصاريف التصوير</td><td class="td-num td-red">-7,510 OMR</td></tr>
+          <tr><td><strong>الربح الصافي المتوقع</strong></td><td class="td-num td-green" style="font-size:14px;">37,518 OMR</td></tr>
+        </table>
+        <div style="margin-top:10px;">
+          <div class="alert alert-amber">📋 <b>Draft 1 جاهز</b> — يجب تسليمه رسمياً لاستحقاق 4,666 ريال</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Alerts -->
+  <div class="section">
+    <div class="section-head"><h3>🚨 التنبيهات العاجلة</h3></div>
+    <div style="padding:16px;display:flex;flex-direction:column;gap:8px;">
+      <div class="alert alert-red">🔴 <b>خطر قانوني:</b> عمران أوقف العمل بدون إشعار رسمي — يجب توثيق هذا التأخير خطياً الآن قبل أي تسليم</div>
+      <div class="alert alert-red">🔴 <b>خطأ في العقد:</b> جدول دفع PO/1133 يجمع 10+20+30+50 = <b>110% بدلاً من 100%</b> — يجب توضيحه مع عمران</div>
+      <div class="alert alert-amber">🟡 <b>ضريبة VAT:</b> مبالغ عمران لا تشمل VAT — تأكد أن حساباتك تأخذ هذا بالاعتبار</div>
+      <div class="alert alert-amber">🟡 <b>تأخير التسليم:</b> الجدول الزمني الأصلي تجاوز مواعيده — تحتاج Amendment رسمي</div>
+      <div class="alert alert-green">🟢 <b>موقفك قوي:</b> الدوم وصل من الصين + Draft 1 شبه جاهز = أنت لم تتأخر، عمران هو المتأخر</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════ PAGE: 1761 ═══════════════════════════════ -->
+<div class="page" id="tab-p1761">
+  <h2 class="page-title">📦 مشروع 1761 — استيراد معدات الدوم الغامر <span>BPA/1067 + PO/1133</span></h2>
+
+  <div class="grid-4" style="margin-bottom:16px;">
+    <div class="kpi gold"><div class="kpi-icon">📄</div><div class="kpi-label">قيمة BPA</div><div class="kpi-value">49,389</div><div class="kpi-sub">OMR (الاتفاقية الشاملة)</div></div>
+    <div class="kpi green"><div class="kpi-icon">✅</div><div class="kpi-label">المقبوض (70%)</div><div class="kpi-value">36,301</div><div class="kpi-sub">الدفعة الأولى ✅ مستلمة</div></div>
+    <div class="kpi amber"><div class="kpi-icon">⏳</div><div class="kpi-label">المتبقي (30%)</div><div class="kpi-value">14,817</div><div class="kpi-sub">عند التركيب والتسليم</div></div>
+    <div class="kpi green"><div class="kpi-icon">💵</div><div class="kpi-label">الربح الصافي المتوقع</div><div class="kpi-value">19,156</div><div class="kpi-sub">بعد مصاريف الصين</div></div>
+  </div>
+
+  <div class="grid-12">
+    <!-- Timeline -->
+    <div class="section">
+      <div class="section-head"><h3>📅 التايم لاين</h3></div>
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-date">ديسمبر 2024<br>RFP صدر</div>
+          <div class="tl-line-wrap"><div class="tl-dot done">✓</div><div class="tl-connector done"></div></div>
+          <div class="tl-content"><div class="tl-title">صدور طلب العروض</div><div class="tl-detail">عمران أصدرت RFP-1761 بتاريخ 19/12/2024<br>تاريخ إغلاق: 23/12/2024</div><div class="tl-tag done">مكتمل</div></div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-date">31 ديسمبر 2024<br>BPA</div>
+          <div class="tl-line-wrap"><div class="tl-dot done">✓</div><div class="tl-connector done"></div></div>
+          <div class="tl-content"><div class="tl-title">توقيع الاتفاقية BPA/1067</div><div class="tl-detail">مبلغ: 49,389 OMR | الفترة: حتى يونيو 2028</div><div class="tl-tag done">موقّع</div></div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-date">20 يناير 2025<br>PO</div>
+          <div class="tl-line-wrap"><div class="tl-dot done">✓</div><div class="tl-connector done"></div></div>
+          <div class="tl-content"><div class="tl-title">أمر الشراء PO/1133</div><div class="tl-detail">صادر من عمران بمبلغ 46,662 OMR | مدة تسليم: سنة</div><div class="tl-tag done">موقّع</div></div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-date">فبراير 2025<br>الدفعة</div>
+          <div class="tl-line-wrap"><div class="tl-dot done">✓</div><div class="tl-connector done"></div></div>
+          <div class="tl-content"><div class="tl-title">استلام 70% = 36,301 OMR</div><div class="tl-detail">فاتورة GA-FD 2025/001 صادرة ومدفوعة ✅</div><div class="tl-tag done">مقبوض</div></div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-date">فبراير–أبريل 2025<br>الشراء</div>
+          <div class="tl-line-wrap"><div class="tl-dot done">✓</div><div class="tl-connector done"></div></div>
+          <div class="tl-content"><div class="tl-title">الشراء والاستيراد من الصين</div><div class="tl-detail">دفعة أولى للصين: 13,906 OMR<br>دفعة ثانية للصين: 15,575 OMR</div><div class="tl-tag done">مكتمل</div></div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-date">2025–2026<br>الوصول</div>
+          <div class="tl-line-wrap"><div class="tl-dot done">✓</div><div class="tl-connector blocked"></div></div>
+          <div class="tl-content"><div class="tl-title">✅ الدوم وصل من الصين!</div><div class="tl-detail">المعدة موجودة وجاهزة للتركيب<br>الصناديق (Flight Cases) موجودة</div><div class="tl-tag done">وصل</div></div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-date">مجهول<br>مُعلَّق</div>
+          <div class="tl-line-wrap"><div class="tl-dot blocked">✗</div><div class="tl-connector"></div></div>
+          <div class="tl-content"><div class="tl-title">❌ التركيب — مُعلَّق</div><div class="tl-detail">السبب: عمران لم يحدد الموقع حتى الآن<br>التأخير على عاتق عمران !</div><div class="tl-tag blocked">مُعلَّق — عمران</div></div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-date">بعد الموقع<br>مستقبلاً</div>
+          <div class="tl-line-wrap"><div class="tl-dot pending">○</div><div class="tl-connector"></div></div>
+          <div class="tl-content"><div class="tl-title">التشغيل والتدريب</div><div class="tl-detail">تدريب موظفين عمران + اختبار كامل</div><div class="tl-tag pending">معلّق</div></div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-date">نهاية المشروع</div>
+          <div class="tl-line-wrap"><div class="tl-dot pending">○</div></div>
+          <div class="tl-content"><div class="tl-title">الدفعة الأخيرة = 14,817 OMR</div><div class="tl-detail">بعد اعتماد التسليم النهائي</div><div class="tl-tag pending">⏳ معلّق</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <!-- Financial -->
+      <div class="section" style="margin-bottom:14px;">
+        <div class="section-head"><h3>💰 التفصيل المالي الكامل — 1761</h3></div>
+        <div style="padding:4px 0;">
+          <table>
+            <thead><tr><th>البند</th><th class="ltr">المبلغ (OMR)</th><th>الحالة</th></tr></thead>
+            <tbody>
+              <tr style="background:rgba(212,165,32,.05)">
+                <td><strong>قيمة العقد الإجمالي</strong></td>
+                <td class="td-num td-gold">51,858.45</td>
+                <td><span class="pill pill-gold">العقد</span></td>
+              </tr>
+              <tr>
+                <td>خصم VAT 5%</td>
+                <td class="td-num td-red">-2,469.45</td>
+                <td><span class="pill pill-amber">ضريبة</span></td>
+              </tr>
+              <tr>
+                <td><strong>صافي الإيراد</strong></td>
+                <td class="td-num td-blue">49,389.00</td>
+                <td><span class="pill pill-blue">صافي</span></td>
+              </tr>
+              <tr style="background:rgba(22,101,52,.05)">
+                <td>✅ الدفعة الأولى (70%)</td>
+                <td class="td-num td-green">36,300.92</td>
+                <td><span class="pill pill-green">مقبوض</span></td>
+              </tr>
+              <tr>
+                <td>⏳ الدفعة الثانية والأخيرة (30%)</td>
+                <td class="td-num td-amber">14,816.70</td>
+                <td><span class="pill pill-amber">معلّق</span></td>
+              </tr>
+              <tr style="background:rgba(153,27,27,.05)">
+                <td>الدفعة الأولى للصين</td>
+                <td class="td-num td-red">-13,906.75</td>
+                <td><span class="pill pill-amber">مصروف</span></td>
+              </tr>
+              <tr style="background:rgba(153,27,27,.05)">
+                <td>الدفعة الثانية للصين</td>
+                <td class="td-num td-red">-15,575.09</td>
+                <td><span class="pill pill-amber">مصروف</span></td>
+              </tr>
+              <tr style="background:rgba(153,27,27,.05)">
+                <td>مصاريف أخرى متنوعة</td>
+                <td class="td-num td-red">-10.50</td>
+                <td><span class="pill pill-amber">مصروف</span></td>
+              </tr>
+              <tr style="background:rgba(212,165,32,.08)">
+                <td><strong>الرصيد الحالي (في الحساب)</strong></td>
+                <td class="td-num td-amber" style="font-size:14px;">4,339.13</td>
+                <td><span class="pill pill-amber">الحساب</span></td>
+              </tr>
+              <tr style="background:rgba(22,101,52,.1)">
+                <td><strong>صافي الربح بعد التسليم الكامل</strong></td>
+                <td class="td-num td-green" style="font-size:16px;">19,155.83</td>
+                <td><span class="pill pill-green">المتوقع</span></td>
+              </tr>
+              <tr style="background:rgba(14,165,233,.05)">
+                <td>نصيب كل شريك (÷3)</td>
+                <td class="td-num td-blue" style="font-size:14px;">6,385.28</td>
+                <td><span class="pill pill-blue">للفرد</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- نقاط العقد -->
+      <div class="section">
+        <div class="section-head"><h3>📋 أبرز بنود العقد — 1761</h3></div>
+        <div style="padding:14px;">
+          <table>
+            <thead><tr><th>البند</th><th>ما يعنيه</th></tr></thead>
+            <tbody>
+              <tr><td>مدة BPA</td><td class="td-blue">31/12/2024 → 30/06/2028</td></tr>
+              <tr><td>مدة PO</td><td class="td-muted">سنة واحدة من 20/01/2025</td></tr>
+              <tr><td>جدول الدفع (PO/1133)</td><td class="td-amber">70% توقيع · 10% شحن · 10% تركيب · 10% تشغيل</td></tr>
+              <tr><td>⚠️ خطأ في PO!</td><td class="td-red">المجموع 110% لا 100% — يجب توضيح!</td></tr>
+              <tr><td>الضمان</td><td>12 شهر من تاريخ التسليم</td></tr>
+              <tr><td>غرامة التأخير (عليك)</td><td class="td-amber">مذكورة في العقد</td></tr>
+              <tr><td>غرامة تأخير عمران؟</td><td class="td-red">❌ غير مذكورة — ثغرة!</td></tr>
+              <tr><td>السعر</td><td>ثابت لا يتغير طوال المشروع</td></tr>
+              <tr><td>حل النزاع</td><td>القانون العُماني</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════ PAGE: 1762 ═══════════════════════════════ -->
+<div class="page" id="tab-p1762">
+  <h2 class="page-title">🎬 مشروع 1762 — المحتوى والتنفيذ <span>PO/1133/2025</span></h2>
+
+  <div class="grid-4" style="margin-bottom:16px;">
+    <div class="kpi gold"><div class="kpi-icon">📄</div><div class="kpi-label">قيمة PO</div><div class="kpi-value">46,662</div><div class="kpi-sub">OMR (بعد VAT)</div></div>
+    <div class="kpi green"><div class="kpi-icon">✅</div><div class="kpi-label">المقبوض (30%)</div><div class="kpi-value">14,699</div><div class="kpi-sub">الدفعة الأولى ✅</div></div>
+    <div class="kpi amber"><div class="kpi-icon">⏳</div><div class="kpi-label">المتبقي (70%)</div><div class="kpi-value">32,663</div><div class="kpi-sub">3 دفعات متبقية</div></div>
+    <div class="kpi green"><div class="kpi-icon">💵</div><div class="kpi-label">الربح الصافي المتوقع</div><div class="kpi-value">37,518</div><div class="kpi-sub">بعد مصاريف التصوير</div></div>
+  </div>
+
+  <div class="grid-12">
+    <!-- Timeline -->
+    <div class="section">
+      <div class="section-head"><h3>📅 التايم لاين</h3></div>
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-date">ديسمبر 2024</div>
+          <div class="tl-line-wrap"><div class="tl-dot done">✓</div><div class="tl-connector done"></div></div>
+          <div class="tl-content"><div class="tl-title">صدور RFP-1762</div><div class="tl-detail">22/12/2024 | إغلاق 24/12/2024</div><div class="tl-tag done">مكتمل</div></div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-date">يناير 2025</div>
+          <div class="tl-line-wrap"><div class="tl-dot done">✓</div><div class="tl-connector done"></div></div>
+          <div class="tl-content"><div class="tl-title">توقيع PO/1133</div><div class="tl-detail">46,662 OMR | 20 يناير 2025</div><div class="tl-tag done">موقّع</div></div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-date">يناير 2025</div>
+          <div class="tl-line-wrap"><div class="tl-dot done">✓</div><div class="tl-connector done"></div></div>
+          <div class="tl-content"><div class="tl-title">استلام 30% = 14,699 OMR</div><div class="tl-detail">الدفعة الأولى مستلمة</div><div class="tl-tag done">مقبوض</div></div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-date">فبراير 2025</div>
+          <div class="tl-line-wrap"><div class="tl-dot done">✓</div><div class="tl-connector done"></div></div>
+          <div class="tl-content"><div class="tl-title">شراء المعدات</div><div class="tl-detail">درون + PC + Insta360 X5 + هاردسك<br>إجمالي: ~5,333 OMR</div><div class="tl-tag done">مكتمل</div></div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-date">أبريل–سبتمبر 2025</div>
+          <div class="tl-line-wrap"><div class="tl-dot done">✓</div><div class="tl-connector progress"></div></div>
+          <div class="tl-content"><div class="tl-title">✅ التصوير في المواقع</div><div class="tl-detail">الجبل الأخضر، وادي شاب، صلالة، تنوف، الحطب، صور، وادي مبام...</div><div class="tl-tag done">منجز جزئياً</div></div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-date">مارس 2026 — الآن</div>
+          <div class="tl-line-wrap"><div class="tl-dot progress">⚙</div><div class="tl-connector progress"></div></div>
+          <div class="tl-content"><div class="tl-title">🔄 Draft 1 — شبه جاهز</div><div class="tl-detail">التسليم الجزئي الأول جاهز للإرسال</div><div class="tl-tag progress">جارٍ</div></div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-date">قريباً</div>
+          <div class="tl-line-wrap"><div class="tl-dot pending">○</div><div class="tl-connector"></div></div>
+          <div class="tl-content"><div class="tl-title">⏳ تسليم Draft 1 رسمياً</div><div class="tl-detail">→ يستحق 10% = 4,666 OMR فوراً!</div><div class="tl-tag pending">عاجل</div></div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-date">بعد الموقع</div>
+          <div class="tl-line-wrap"><div class="tl-dot pending">○</div><div class="tl-connector"></div></div>
+          <div class="tl-content"><div class="tl-title">دمج المحتوى في الدوم</div><div class="tl-detail">مرتبط بمشروع 1761 — يحتاج تحديد الموقع</div><div class="tl-tag blocked">مُعلَّق — عمران</div></div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-date">نهاية المشروع</div>
+          <div class="tl-line-wrap"><div class="tl-dot pending">○</div></div>
+          <div class="tl-content"><div class="tl-title">التسليم النهائي + 40% = 18,665 OMR</div><div class="tl-detail">الدفعة الأخيرة والأكبر</div><div class="tl-tag pending">⏳ معلّق</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <!-- Financial -->
+      <div class="section" style="margin-bottom:14px;">
+        <div class="section-head"><h3>💰 التفصيل المالي الكامل — 1762</h3></div>
+        <div style="padding:4px 0;">
+          <table>
+            <thead><tr><th>البند</th><th class="ltr">المبلغ (OMR)</th><th>الحالة</th></tr></thead>
+            <tbody>
+              <tr style="background:rgba(212,165,32,.05)">
+                <td><strong>قيمة العقد الإجمالي</strong></td>
+                <td class="td-num td-gold">48,995.10</td>
+                <td><span class="pill pill-gold">العقد</span></td>
+              </tr>
+              <tr>
+                <td>خصم VAT 5%</td>
+                <td class="td-num td-red">-2,333.10</td>
+                <td><span class="pill pill-amber">ضريبة</span></td>
+              </tr>
+              <tr>
+                <td><strong>صافي الإيراد</strong></td>
+                <td class="td-num td-blue">46,662.00</td>
+                <td><span class="pill pill-blue">صافي</span></td>
+              </tr>
+              <tr style="background:rgba(22,101,52,.05)">
+                <td>✅ دفعة 1 (30%) — مقبوضة</td>
+                <td class="td-num td-green">14,698.53</td>
+                <td><span class="pill pill-green">مقبوض</span></td>
+              </tr>
+              <tr><td>⏳ دفعة 2 (10%) — التسليم</td><td class="td-num td-amber">4,666.20</td><td><span class="pill pill-amber">Draft 1</span></td></tr>
+              <tr><td>⏳ دفعة 3 (20%) — التركيب</td><td class="td-num td-amber">9,332.40</td><td><span class="pill pill-amber">معلّق</span></td></tr>
+              <tr><td>⏳ دفعة 4 (40%) — التسليم النهائي</td><td class="td-num td-amber">18,664.80</td><td><span class="pill pill-amber">معلّق</span></td></tr>
+              <tr style="background:rgba(153,27,27,.05)"><td>الدرون</td><td class="td-num td-red">-1,120.00</td><td><span class="pill pill-amber">مصروف</span></td></tr>
+              <tr style="background:rgba(153,27,27,.05)"><td>الـ PC عالي الأداء</td><td class="td-num td-red">-4,001.00</td><td><span class="pill pill-amber">مصروف</span></td></tr>
+              <tr style="background:rgba(153,27,27,.05)"><td>Insta360 X5</td><td class="td-num td-red">-200.00</td><td><span class="pill pill-amber">مصروف</span></td></tr>
+              <tr style="background:rgba(153,27,27,.05)"><td>مصاريف السفر والتصوير</td><td class="td-num td-red">-2,189.48</td><td><span class="pill pill-amber">مصروف</span></td></tr>
+              <tr style="background:rgba(212,165,32,.08)">
+                <td><strong>الرصيد الحالي (في الحساب)</strong></td>
+                <td class="td-num td-amber" style="font-size:14px;">4,854.95</td>
+                <td><span class="pill pill-amber">الحساب</span></td>
+              </tr>
+              <tr style="background:rgba(22,101,52,.1)">
+                <td><strong>صافي الربح بعد التسليم</strong></td>
+                <td class="td-num td-green" style="font-size:16px;">37,518.35</td>
+                <td><span class="pill pill-green">المتوقع</span></td>
+              </tr>
+              <tr style="background:rgba(14,165,233,.05)">
+                <td>نصيب كل شريك (÷3)</td>
+                <td class="td-num td-blue" style="font-size:14px;">12,506.12</td>
+                <td><span class="pill pill-blue">للفرد</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- مواقع التصوير -->
+      <div class="section">
+        <div class="section-head"><h3>📍 مواقع التصوير (14 موقع مطلوب)</h3></div>
+        <div style="padding:14px;">
+          <table>
+            <thead><tr><th>الموقع</th><th>الحالة</th></tr></thead>
+            <tbody>
+              <tr><td>الجبل الأخضر (فيا فراتا)</td><td><span class="pill pill-green">✓ مُصوَّر</span></td></tr>
+              <tr><td>وادي شاب</td><td><span class="pill pill-green">✓ مُصوَّر</span></td></tr>
+              <tr><td>صلالة (متعدد)</td><td><span class="pill pill-green">✓ مُصوَّر</span></td></tr>
+              <tr><td>قوس تنوف</td><td><span class="pill pill-green">✓ مُصوَّر</span></td></tr>
+              <tr><td>على الحطب</td><td><span class="pill pill-green">✓ مُصوَّر</span></td></tr>
+              <tr><td>فندق صور / وادي الجحل</td><td><span class="pill pill-green">✓ مُصوَّر</span></td></tr>
+              <tr><td>وادي مبام</td><td><span class="pill pill-amber">جزئي</span></td></tr>
+              <tr><td>المواقع المتبقية</td><td><span class="pill pill-amber">⏳ معلّقة</span></td></tr>
+            </tbody>
+          </table>
+          <div style="margin-top:10px;" class="alert alert-amber">
+            📌 العقد يشترط 14 موقعاً + مدة إجمالية 10 دقائق. Draft 1 يُسلَّم كمرحلة جزئية.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════ PAGE: LEGAL ═══════════════════════════════ -->
+<div class="page" id="tab-legal">
+  <h2 class="page-title">⚖️ التحليل القانوني والمخاطر <span>استشارة قانونية — سرية</span></h2>
+
+  <div class="alert alert-gold" style="margin-bottom:16px;">
+    ⚖️ <b>ملاحظة:</b> هذا التحليل بناءً على مراجعة وثائق العقد وليس استشارة قانونية رسمية. للإجراءات الرسمية يُنصح بمحامٍ مُرخَّص في عُمان.
+  </div>
+
+  <!-- خلاصة الموقف -->
+  <div class="section" style="margin-bottom:16px;">
+    <div class="section-head"><h3>🏆 خلاصة موقفك القانوني</h3><span class="badge badge-green">موقفك قوي</span></div>
+    <div style="padding:16px;display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+      <div>
+        <div style="font-size:11px;font-weight:800;color:var(--green2);margin-bottom:8px;">✅ ما نفّذته أنت (مما يحمي موقفك):</div>
+        <div class="legal-box">
+          <p>
+            ✅ استوردت الدوم وأعطيته في المخزن جاهزاً<br>
+            ✅ دفعت للصين وأتممت الاستيراد<br>
+            ✅ اشتريت معدات التصوير<br>
+            ✅ صوّرت في عدة مواقع متعددة<br>
+            ✅ Draft 1 جاهز للتسليم<br>
+            ✅ الدفعات الأولى مستلمة وموثّقة
+          </p>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:11px;font-weight:800;color:var(--red2);margin-bottom:8px;">❌ ما لم يفعله عمران (مصدر قوتك):</div>
+        <div class="legal-box">
+          <p>
+            ❌ لم يحدد الموقع للتركيب حتى الآن<br>
+            ❌ أوقف العمل بدون إشعار رسمي<br>
+            ❌ لم يُصدر تعليمات المرحلة التالية<br>
+            ❌ تسبب في تجاوز الجدول الزمني المتفق<br>
+            ❌ لم يُرسل أي Amendment رسمي للجدول
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- المخاطر العالية -->
+  <div class="section" style="margin-bottom:16px;">
+    <div class="section-head"><h3>🚨 المخاطر مرتبةً بالأولوية</h3></div>
+    <div style="padding:16px;">
+
+      <div class="risk-card high">
+        <div class="risk-title"><span style="color:var(--red2);">🔴</span> خطر عالٍ — خطأ 110% في جدول الدفع</div>
+        <div class="risk-body">
+          جدول الدفع في PO/1133 يجمع: 10% + 20% + 30% + 50% = <strong>110% بدلاً من 100%</strong>.<br>
+          هذا خطأ قانوني فعلي. عمران قد تستخدمه ضدك لرفع الدفعة الأخيرة أو تقليلها.
+        </div>
+        <div class="risk-action">أرسل بريداً رسمياً لعمران تطلب توضيح جدول الدفع الصحيح قبل تسليم Draft 1. وثّق ردهم.</div>
+      </div>
+
+      <div class="risk-card high">
+        <div class="risk-title"><span style="color:var(--red2);">🔴</span> خطر عالٍ — التأخير غير الموثّق</div>
+        <div class="risk-body">
+          العقد يحمي عمران من تأخيرك. لكنه <strong>لا يذكر صراحةً</strong> تعويضك إذا أخّرك عمران.<br>
+          إذا لم توثّق هذا التأخير رسمياً الآن، عمران قد تدّعي لاحقاً أنك أنت من تأخرت!
+        </div>
+        <div class="risk-action">أرسل إيميلاً رسمياً بتاريخ اليوم: "الدوم وصل + جاهزون للتركيب + ننتظر تحديد الموقع من طرفكم". احفظ نسخة.</div>
+      </div>
+
+      <div class="risk-card high">
+        <div class="risk-title"><span style="color:var(--red2);">🔴</span> خطر عالٍ — شرط المراحل الخطير</div>
+        <div class="risk-body">
+          العقد ينص: "لا ينتقل المورد من مرحلة لأخرى <strong>إلا بتعليمات كتابية رسمية</strong> من عمران".<br>
+          هذا يعني إذا واصلت العمل بدون إذن خطي، يمكنهم رفض دفع أي مرحلة تالية!
+        </div>
+        <div class="risk-action">لا تسلّم Draft 1 شفهياً. أرسله بإيميل رسمي واطلب تأكيداً كتابياً بالاستلام والانتقال للمرحلة التالية.</div>
+      </div>
+
+      <div class="risk-card med">
+        <div class="risk-title"><span style="color:var(--amber2);">🟡</span> خطر متوسط — ملكية المحتوى</div>
+        <div class="risk-body">
+          العقد ينص صراحةً: <strong>جميع حقوق المحتوى والكود المصدري تؤول لعمران بالكامل</strong> بعد السداد.<br>
+          لكن قبل السداد الكامل — الحقوق لا تزال معك قانونياً.
+        </div>
+        <div class="risk-action">لا تسلّم الكود المصدري أو الملفات الخام حتى استلام الدفعة النهائية. سلّم نسخة مضغوطة فقط كـ Draft.</div>
+      </div>
+
+      <div class="risk-card med">
+        <div class="risk-title"><span style="color:var(--amber2);">🟡</span> خطر متوسط — VAT وحسابات الضرائب</div>
+        <div class="risk-body">
+          قيم العقود الظاهرة (46,662 و49,389) هي <strong>بعد خصم VAT 5%</strong> من المبالغ الأصلية.<br>
+          ملف الحسابات يُظهر أن ضريبة 1762 لم تُدفع بالكامل بعد (-1,633 ريال متبقي).
+        </div>
+        <div class="risk-action">تأكد من تسوية حسابات VAT قبل التسليم النهائي لتجنب أي مطالبات ضريبية لاحقة.</div>
+      </div>
+
+      <div class="risk-card med">
+        <div class="risk-title"><span style="color:var(--amber2);">🟡</span> خطر متوسط — الضمان بعد التسليم</div>
+        <div class="risk-body">
+          عمران تملك الحق في مطالبتك بإصلاح أي عيوب لمدة <strong>12 شهراً</strong> بعد التسليم.<br>
+          إذا كان جهاز الدوم الصيني به أي مشكلة — أنت تتحمل تكاليف الإصلاح.
+        </div>
+        <div class="risk-action">احصل على وثيقة ضمان من الشركة الصينية المورّدة للدوم قبل التركيب. وثّق حالة المعدات عند وصولها.</div>
+      </div>
+
+      <div class="risk-card low">
+        <div class="risk-title"><span style="color:var(--green2);">🟢</span> خطر منخفض — المقاولون من الباطن</div>
+        <div class="risk-body">
+          إذا استخدمت أي متعاقد خارجي — يجب أن يوافق عمران عليه مسبقاً.<br>
+          العقد يُلزم بإخطار عمران بأي مقاول فرعي.
+        </div>
+        <div class="risk-action">إذا كان فريقك الثلاثة شركاء (مش موظفين في الزوايا الذهبية) — أبلغ عمران رسمياً بهيكل الفريق.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- الإجراءات العاجلة -->
+  <div class="section">
+    <div class="section-head"><h3>⚡ الإجراءات العاجلة — مرتبة حسب الأولوية</h3></div>
+    <div style="padding:16px;">
+      <table>
+        <thead><tr><th>#</th><th>الإجراء</th><th>الأثر</th><th>الأولوية</th></tr></thead>
+        <tbody>
+          <tr>
+            <td style="font-family:Montserrat;font-weight:900;color:var(--red2);">1</td>
+            <td><strong>إرسال إشعار رسمي بوصول الدوم</strong><br><span style="font-size:9px;color:var(--muted);">بريد إلكتروني رسمي يؤكد وصول المعدة وجاهزيتها</span></td>
+            <td class="td-green">توثيق التأخير على عمران</td>
+            <td><span class="pill pill-red">عاجل جداً</span></td>
+          </tr>
+          <tr>
+            <td style="font-family:Montserrat;font-weight:900;color:var(--red2);">2</td>
+            <td><strong>تسليم Draft 1 رسمياً بإيميل</strong><br><span style="font-size:9px;color:var(--muted);">مع طلب صريح لاستحقاق الدفعة الثانية (10% = 4,666 OMR)</span></td>
+            <td class="td-green">تحصيل 4,666 ريال</td>
+            <td><span class="pill pill-red">عاجل</span></td>
+          </tr>
+          <tr>
+            <td style="font-family:Montserrat;font-weight:900;color:var(--amber2);">3</td>
+            <td><strong>طلب Amendment رسمي للجدول الزمني</strong><br><span style="font-size:9px;color:var(--muted);">تعديل التواريخ بما يعكس التأخير الناتج عن عمران</span></td>
+            <td class="td-blue">حماية من غرامات التأخير</td>
+            <td><span class="pill pill-amber">هذا الشهر</span></td>
+          </tr>
+          <tr>
+            <td style="font-family:Montserrat;font-weight:900;color:var(--amber2);">4</td>
+            <td><strong>توضيح بند الـ 110%</strong><br><span style="font-size:9px;color:var(--muted);">مراسلة عمران لتأكيد الجدول الصحيح (يجب أن يكون 100%)</span></td>
+            <td class="td-blue">حماية المبلغ الكامل</td>
+            <td><span class="pill pill-amber">هذا الشهر</span></td>
+          </tr>
+          <tr>
+            <td style="font-family:Montserrat;font-weight:900;color:var(--blue2);">5</td>
+            <td><strong>توثيق صور الدوم في المخزن</strong><br><span style="font-size:9px;color:var(--muted);">صور موثّقة بالتاريخ لإثبات وصول المعدة</span></td>
+            <td class="td-muted">أدلة قانونية</td>
+            <td><span class="pill pill-blue">قريباً</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════ PAGE: PARTNERS ═══════════════════════════════ -->
+<div class="page" id="tab-partners">
+  <h2 class="page-title">👥 توزيع الأرباح على الشركاء الثلاثة <span>داخلي سري — الزوايا الذهبية</span></h2>
+
+  <div class="grid-4" style="margin-bottom:16px;">
+    <div class="kpi green"><div class="kpi-icon">💰</div><div class="kpi-label">إجمالي الربح المتوقع</div><div class="kpi-value">56,674</div><div class="kpi-sub">المشروع 1 + المشروع 2</div></div>
+    <div class="kpi blue"><div class="kpi-icon">👤</div><div class="kpi-label">نصيب كل شريك</div><div class="kpi-value">18,891</div><div class="kpi-sub">OMR عند الإنجاز الكامل</div></div>
+    <div class="kpi amber"><div class="kpi-icon">💵</div><div class="kpi-label">الرصيد الحالي للقسمة</div><div class="kpi-value">15,020</div><div class="kpi-sub">قابل للتوزيع الآن</div></div>
+    <div class="kpi gold"><div class="kpi-icon">⚖️</div><div class="kpi-label">لكل شريك الآن</div><div class="kpi-value">5,007</div><div class="kpi-sub">OMR من الرصيد الحالي</div></div>
+  </div>
+
+  <!-- Partner Cards -->
+  <div class="grid-3" style="margin-bottom:16px;">
+    <div class="partner">
+      <div class="partner-avatar">👤</div>
+      <div class="partner-name">الشريك 1</div>
+      <div class="partner-role">—</div>
+      <div class="partner-amount">18,891 OMR</div>
+      <div class="partner-label">النصيب المتوقع النهائي</div>
+    </div>
+    <div class="partner">
+      <div class="partner-avatar">👤</div>
+      <div class="partner-name">الشريك 2</div>
+      <div class="partner-role">—</div>
+      <div class="partner-amount">18,891 OMR</div>
+      <div class="partner-label">النصيب المتوقع النهائي</div>
+    </div>
+    <div class="partner">
+      <div class="partner-avatar">👤</div>
+      <div class="partner-name">الشريك 3</div>
+      <div class="partner-role">—</div>
+      <div class="partner-amount">18,891 OMR</div>
+      <div class="partner-label">النصيب المتوقع النهائي</div>
+    </div>
+  </div>
+
+  <!-- توزيع تفصيلي -->
+  <div class="section">
+    <div class="section-head"><h3>📊 التوزيع التفصيلي</h3></div>
+    <div style="padding:4px 0;">
+      <table>
+        <thead>
+          <tr>
+            <th>المصدر</th>
+            <th class="ltr">المبلغ الكلي</th>
+            <th class="ltr">للشريك 1</th>
+            <th class="ltr">للشريك 2</th>
+            <th class="ltr">للشريك 3</th>
+            <th>الحالة</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="background:rgba(212,165,32,.04)">
+            <td><strong>صافي ربح مشروع 1761</strong></td>
+            <td class="td-num td-gold">19,155.83</td>
+            <td class="td-num td-blue">6,385.28</td>
+            <td class="td-num td-blue">6,385.28</td>
+            <td class="td-num td-blue">6,385.28</td>
+            <td><span class="pill pill-amber">جزئي</span></td>
+          </tr>
+          <tr style="background:rgba(22,101,52,.04)">
+            <td><strong>صافي ربح مشروع 1762</strong></td>
+            <td class="td-num td-gold">37,518.35</td>
+            <td class="td-num td-blue">12,506.12</td>
+            <td class="td-num td-blue">12,506.12</td>
+            <td class="td-num td-blue">12,506.12</td>
+            <td><span class="pill pill-amber">جزئي</span></td>
+          </tr>
+          <tr style="background:rgba(212,165,32,.08)">
+            <td><strong>🏆 الإجمالي عند الإنجاز</strong></td>
+            <td class="td-num td-green" style="font-size:15px;">56,674.18</td>
+            <td class="td-num td-green" style="font-size:15px;">18,891.39</td>
+            <td class="td-num td-green" style="font-size:15px;">18,891.39</td>
+            <td class="td-num td-green" style="font-size:15px;">18,891.39</td>
+            <td><span class="pill pill-green">المتوقع</span></td>
+          </tr>
+          <tr style="background:rgba(14,165,233,.04)">
+            <td><strong>💵 الرصيد الحالي للقسمة</strong></td>
+            <td class="td-num td-amber" style="font-size:14px;">15,019.62</td>
+            <td class="td-num td-amber" style="font-size:14px;">5,006.54</td>
+            <td class="td-num td-amber" style="font-size:14px;">5,006.54</td>
+            <td class="td-num td-amber" style="font-size:14px;">5,006.54</td>
+            <td><span class="pill pill-blue">متاح</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Payments Breakdown -->
+  <div class="section" style="margin-top:14px;">
+    <div class="section-head"><h3>⏳ الدفعات القادمة وتوقيتها</h3></div>
+    <div style="padding:4px 0;">
+      <table>
+        <thead><tr><th>الدفعة</th><th>المشروع</th><th class="ltr">المبلغ</th><th>الشرط</th><th>التوزيع/شريك</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>الدفعة 2 (التسليم)</td>
+            <td><span class="pill pill-blue">1762</span></td>
+            <td class="td-num td-amber">4,666</td>
+            <td>تسليم Draft 1 رسمياً</td>
+            <td class="td-num td-blue">~1,555/شريك</td>
+          </tr>
+          <tr>
+            <td>الدفعة 3 (التركيب)</td>
+            <td><span class="pill pill-blue">1762</span></td>
+            <td class="td-num td-amber">9,332</td>
+            <td>دمج المحتوى في الدوم</td>
+            <td class="td-num td-blue">~3,110/شريك</td>
+          </tr>
+          <tr>
+            <td>الدفعة 2 (التركيب)</td>
+            <td><span class="pill pill-gold">1761</span></td>
+            <td class="td-num td-amber">14,817</td>
+            <td>تركيب الدوم في الموقع</td>
+            <td class="td-num td-blue">~4,939/شريك</td>
+          </tr>
+          <tr>
+            <td>الدفعة النهائية</td>
+            <td><span class="pill pill-blue">1762</span></td>
+            <td class="td-num td-amber">18,665</td>
+            <td>التسليم النهائي والقبول</td>
+            <td class="td-num td-blue">~6,221/شريك</td>
+          </tr>
+          <tr style="background:rgba(22,101,52,.08)">
+            <td><strong>إجمالي الدفعات القادمة</strong></td>
+            <td>—</td>
+            <td class="td-num td-green" style="font-size:14px;">47,480</td>
+            <td>—</td>
+            <td class="td-num td-green" style="font-size:14px;">~15,826/شريك</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<script>
+function showTab(id) {
+  document.querySelectorAll('.tab').forEach((t,i) => {
+    const ids = ['overview','p1761','p1762','legal','partners'];
+    t.classList.toggle('active', ids[i] === id);
+  });
+  document.querySelectorAll('.page').forEach(p => {
+    p.classList.toggle('active', p.id === 'tab-'+id);
+  });
+}
+</script>
+</body>
+</html>
