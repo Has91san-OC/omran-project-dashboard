@@ -3,17 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>لوحة تحكم مشاريع عمران | الزوايا الذهبية</title>
+<title>خارطة الطريق — مشاريع عمران</title>
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
 <style>
 :root{--navy:#0F2342;--navy2:#1B3A5C;--gold:#D4A520;--gold2:#F0B429;--blue:#0369A1;--blue2:#0EA5E9;--orange:#C2410C;--orange2:#F97316;--green:#166534;--green2:#22C55E;--red:#991B1B;--red2:#EF4444;--purple:#4C1D95;--purple2:#8B5CF6;--amber:#92400E;--amber2:#F59E0B;--bg:#0D1B2A;--card:#142030;--card2:#1A2B3E;--border:#1E3A5C;--text:#E2E8F0;--muted:#7A9BB5;}
 *{margin:0;padding:0;box-sizing:border-box;}
 body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;}
 .nav{background:linear-gradient(135deg,var(--navy),var(--navy2));padding:12px 24px;display:flex;justify-content:space-between;align-items:center;border-bottom:2px solid var(--gold);position:sticky;top:0;z-index:100;}
-.nav-logo{font-size:14px;font-weight:900;color:var(--gold);}
-.nav-sub{font-size:10px;color:var(--muted);margin-top:2px;}
-.tabs{display:flex;gap:4px;padding:12px 24px 0;background:var(--navy);}
-.tab{padding:9px 18px;border-radius:8px 8px 0 0;cursor:pointer;font-size:11px;font-weight:700;transition:.2s;border:1px solid transparent;border-bottom:none;}
+.nav-logo{font-size:13px;font-weight:900;color:var(--gold);}
+.nav-sub{font-size:9.5px;color:var(--muted);margin-top:2px;}
+.tabs{display:flex;gap:3px;padding:12px 24px 0;background:var(--navy);}
+.tab{padding:9px 16px;border-radius:8px 8px 0 0;cursor:pointer;font-size:11px;font-weight:700;transition:.2s;border:1px solid transparent;border-bottom:none;}
 .tab.active{background:var(--bg);color:var(--gold);border-color:var(--border);}
 .tab:not(.active){background:rgba(255,255,255,.05);color:var(--muted);}
 .page{display:none;padding:20px 24px;}
@@ -21,7 +21,6 @@ body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--text);min-h
 .grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;}
 .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
 .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
-.grid-13{display:grid;grid-template-columns:1fr 2.2fr;gap:12px;}
 .kpi{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:14px;position:relative;overflow:hidden;}
 .kpi::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;}
 .kpi.gold::before{background:linear-gradient(90deg,var(--gold),var(--gold2));}
@@ -29,16 +28,16 @@ body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--text);min-h
 .kpi.amber::before{background:linear-gradient(90deg,var(--amber),var(--amber2));}
 .kpi.blue::before{background:linear-gradient(90deg,var(--blue),var(--blue2));}
 .kpi.red::before{background:linear-gradient(90deg,var(--red),var(--red2));}
-.kpi-label{font-size:9.5px;color:var(--muted);font-weight:700;letter-spacing:.5px;margin-bottom:5px;}
+.kpi-label{font-size:9px;color:var(--muted);font-weight:700;letter-spacing:.5px;margin-bottom:5px;}
 .kpi-value{font-size:20px;font-weight:900;margin-bottom:2px;}
-.kpi-sub{font-size:9.5px;color:var(--muted);}
+.kpi-sub{font-size:9px;color:var(--muted);}
 .kpi.gold .kpi-value{color:var(--gold);}
 .kpi.green .kpi-value{color:var(--green2);}
 .kpi.amber .kpi-value{color:var(--amber2);}
 .kpi.blue .kpi-value{color:var(--blue2);}
 .kpi.red .kpi-value{color:var(--red2);}
 .section{background:var(--card);border:1px solid var(--border);border-radius:10px;overflow:hidden;margin-bottom:12px;}
-.sh{padding:12px 16px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border);}
+.sh{padding:11px 16px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border);}
 .sh h3{font-size:12px;font-weight:800;display:flex;align-items:center;gap:6px;}
 .badge{font-size:8.5px;font-weight:700;padding:2px 8px;border-radius:10px;letter-spacing:.5px;}
 .b-green{background:rgba(22,101,52,.3);color:var(--green2);border:1px solid var(--green);}
@@ -46,6 +45,7 @@ body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--text);min-h
 .b-red{background:rgba(153,27,27,.3);color:var(--red2);border:1px solid var(--red);}
 .b-blue{background:rgba(3,105,161,.3);color:var(--blue2);border:1px solid var(--blue);}
 .b-gold{background:rgba(212,165,32,.2);color:var(--gold);border:1px solid var(--gold);}
+.b-orange{background:rgba(194,65,12,.3);color:var(--orange2);border:1px solid var(--orange);}
 table{width:100%;border-collapse:collapse;}
 th{background:rgba(255,255,255,.03);padding:8px 12px;text-align:right;font-size:9.5px;font-weight:700;color:var(--muted);border-bottom:1px solid var(--border);}
 th.ltr{direction:ltr;text-align:left;}
@@ -53,469 +53,437 @@ td{padding:8px 12px;font-size:10.5px;border-bottom:1px solid rgba(30,58,92,.3);v
 tr:last-child td{border-bottom:none;}
 tr:hover td{background:rgba(255,255,255,.02);}
 .num{font-size:12px;font-weight:700;direction:ltr;text-align:left;}
-.tc-green{color:var(--green2);}
-.tc-red{color:var(--red2);}
-.tc-gold{color:var(--gold);}
-.tc-blue{color:var(--blue2);}
-.tc-muted{color:var(--muted);}
-.tc-amber{color:var(--amber2);}
-.tc-orange{color:var(--orange2);}
-.prog-wrap{background:rgba(255,255,255,.07);border-radius:6px;height:7px;overflow:hidden;}
-.prog-bar{height:100%;border-radius:6px;}
-.pb-green{background:linear-gradient(90deg,var(--green),var(--green2));}
-.pb-orange{background:linear-gradient(90deg,var(--orange),var(--orange2));}
-.pb-blue{background:linear-gradient(90deg,var(--blue),var(--blue2));}
-.pb-amber{background:linear-gradient(90deg,var(--amber),var(--amber2));}
-.pill{display:inline-flex;align-items:center;gap:4px;font-size:8.5px;font-weight:700;padding:2px 8px;border-radius:10px;}
+.tc-green{color:var(--green2);}.tc-red{color:var(--red2);}.tc-gold{color:var(--gold);}.tc-blue{color:var(--blue2);}.tc-muted{color:var(--muted);}.tc-amber{color:var(--amber2);}.tc-orange{color:var(--orange2);}
+.pill{display:inline-flex;align-items:center;font-size:8.5px;font-weight:700;padding:2px 8px;border-radius:10px;}
 .p-green{background:rgba(22,101,52,.3);color:var(--green2);}
 .p-red{background:rgba(153,27,27,.3);color:var(--red2);}
 .p-amber{background:rgba(146,64,14,.3);color:var(--amber2);}
 .p-blue{background:rgba(3,105,161,.3);color:var(--blue2);}
 .p-gold{background:rgba(212,165,32,.2);color:var(--gold);}
 .p-orange{background:rgba(194,65,12,.3);color:var(--orange2);}
-.tl{padding:16px;}
-.tl-row{display:grid;grid-template-columns:110px 22px 1fr;gap:0 12px;align-items:start;margin-bottom:0;}
-.tl-date{font-size:8.5px;color:var(--muted);direction:ltr;text-align:left;padding-top:2px;line-height:1.5;}
-.tl-lw{display:flex;flex-direction:column;align-items:center;}
-.tl-dot{width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;flex-shrink:0;border:2px solid transparent;}
-.td-done{background:var(--green);border-color:var(--green2);color:#fff;}
-.td-prog{background:var(--amber);border-color:var(--amber2);color:#fff;}
-.td-blk{background:var(--red);border-color:var(--red2);color:#fff;}
-.td-pend{background:var(--navy2);border-color:var(--border);color:var(--muted);}
-.tl-conn{width:2px;flex:1;min-height:20px;background:var(--border);margin:2px 0;}
-.tl-conn.done{background:var(--green);}
-.tl-conn.prog{background:linear-gradient(var(--green),var(--border));}
-.tl-content{padding-bottom:14px;}
-.tl-title{font-size:11px;font-weight:800;margin-bottom:2px;}
-.tl-detail{font-size:9.5px;color:var(--muted);line-height:1.7;}
-.tt{display:inline-block;font-size:8.5px;font-weight:700;padding:2px 8px;border-radius:8px;margin-top:3px;}
-.tt-done{background:rgba(22,101,52,.3);color:var(--green2);}
-.tt-prog{background:rgba(146,64,14,.3);color:var(--amber2);}
-.tt-blk{background:rgba(153,27,27,.3);color:var(--red2);}
-.tt-pend{background:rgba(30,58,92,.5);color:var(--muted);}
-.risk{border-radius:8px;padding:12px 14px;margin-bottom:8px;border-right:4px solid;}
-.risk.high{background:rgba(153,27,27,.1);border-color:var(--red2);}
-.risk.med{background:rgba(146,64,14,.1);border-color:var(--amber2);}
-.risk.low{background:rgba(22,101,52,.1);border-color:var(--green2);}
-.risk-title{font-size:11px;font-weight:800;margin-bottom:3px;display:flex;align-items:center;gap:6px;}
-.risk-body{font-size:9.5px;color:var(--muted);line-height:1.8;}
-.risk-action{margin-top:7px;background:rgba(255,255,255,.04);border-radius:5px;padding:6px 10px;font-size:9.5px;}
-.risk-action::before{content:'⚡ الإجراء: ';color:var(--gold);font-weight:800;}
 .alert{border-radius:7px;padding:9px 12px;font-size:10px;line-height:1.8;margin-bottom:8px;}
 .a-red{background:rgba(153,27,27,.15);border:1px solid var(--red);}
 .a-amber{background:rgba(146,64,14,.15);border:1px solid var(--amber2);}
 .a-green{background:rgba(22,101,52,.15);border:1px solid var(--green);}
 .a-gold{background:rgba(212,165,32,.1);border:1px solid var(--gold);}
 .a-blue{background:rgba(3,105,161,.15);border:1px solid var(--blue2);}
-.partner{background:var(--card2);border:1px solid var(--border);border-radius:8px;padding:14px;text-align:center;}
-.p-av{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,var(--navy2),var(--blue));display:flex;align-items:center;justify-content:center;font-size:16px;margin:0 auto 7px;}
-.p-name{font-size:11px;font-weight:800;margin-bottom:2px;}
-.p-role{font-size:9px;color:var(--muted);margin-bottom:8px;}
-.p-amount{font-size:18px;font-weight:900;color:var(--green2);}
-.p-label{font-size:9px;color:var(--muted);}
 h2.pt{font-size:14px;font-weight:900;margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px;}
 h2.pt span{font-size:9.5px;color:var(--muted);font-weight:400;}
-.email-item{border-radius:8px;padding:10px 14px;margin-bottom:8px;background:var(--card2);border:1px solid var(--border);}
-.email-head{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:5px;}
-.email-subj{font-size:10.5px;font-weight:800;}
-.email-date{font-size:8.5px;color:var(--muted);direction:ltr;white-space:nowrap;}
-.email-from{font-size:9px;color:var(--muted);margin-bottom:4px;}
-.email-body{font-size:9.5px;color:var(--text);line-height:1.7;border-top:1px solid var(--border);padding-top:6px;margin-top:4px;}
-@media(max-width:900px){.grid-4,.grid-3,.grid-2,.grid-13{grid-template-columns:1fr;}}
+
+/* ═══ ROADMAP CARD ═══ */
+.rm-stage{border-radius:12px;border:1px solid var(--border);overflow:hidden;margin-bottom:16px;}
+.rm-header{padding:14px 18px;display:flex;align-items:center;justify-content:space-between;}
+.rm-header.green{background:linear-gradient(135deg,rgba(22,101,52,.4),rgba(22,101,52,.2));}
+.rm-header.amber{background:linear-gradient(135deg,rgba(146,64,14,.4),rgba(146,64,14,.2));}
+.rm-header.red{background:linear-gradient(135deg,rgba(153,27,27,.4),rgba(153,27,27,.2));}
+.rm-header.blue{background:linear-gradient(135deg,rgba(3,105,161,.4),rgba(3,105,161,.2));}
+.rm-header.navy{background:linear-gradient(135deg,rgba(15,35,66,.8),rgba(27,58,92,.5));}
+.rm-num{font-size:28px;font-weight:900;opacity:.3;font-family:monospace;}
+.rm-title{font-size:13px;font-weight:900;}
+.rm-sub{font-size:10px;color:var(--muted);margin-top:2px;}
+.rm-amount{font-size:20px;font-weight:900;direction:ltr;}
+.rm-body{padding:16px 18px;background:var(--card);}
+.rm-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:12px;}
+.rm-box{background:var(--card2);border:1px solid var(--border);border-radius:8px;padding:12px;}
+.rm-box-label{font-size:9px;color:var(--muted);font-weight:700;margin-bottom:5px;letter-spacing:.5px;}
+.rm-box-val{font-size:11px;font-weight:700;line-height:1.5;}
+.rm-actions{background:rgba(212,165,32,.07);border:1px solid rgba(212,165,32,.2);border-radius:8px;padding:12px;}
+.rm-actions h4{font-size:10px;font-weight:800;color:var(--gold);margin-bottom:8px;}
+.action-item{display:flex;align-items:flex-start;gap:8px;margin-bottom:7px;font-size:10px;line-height:1.6;}
+.action-num{background:var(--gold);color:#000;border-radius:50%;width:16px;height:16px;display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:900;flex-shrink:0;margin-top:2px;}
+.rm-warning{background:rgba(153,27,27,.15);border:1px solid var(--red);border-radius:8px;padding:10px 12px;margin-top:10px;font-size:9.5px;line-height:1.8;}
+.rm-warning::before{content:'⚠️ ';font-weight:800;}
+
+/* WARRANT BOX */
+.warrant-box{background:rgba(153,27,27,.12);border:2px solid var(--red2);border-radius:12px;padding:16px;margin-bottom:12px;}
+.warrant-title{font-size:14px;font-weight:900;color:var(--red2);margin-bottom:8px;}
+.warrant-clock{font-size:32px;font-weight:900;direction:ltr;color:var(--red2);margin-bottom:4px;}
+.warrant-sub{font-size:10px;color:var(--muted);line-height:1.8;}
+.warrant-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:12px;}
+.wbox{background:rgba(255,255,255,.04);border-radius:8px;padding:10px;text-align:center;}
+.wbox-label{font-size:9px;color:var(--muted);margin-bottom:4px;}
+.wbox-val{font-size:12px;font-weight:800;}
+
+@media(max-width:900px){.grid-4,.grid-3,.grid-2,.rm-grid,.warrant-grid{grid-template-columns:1fr;}}
 </style>
 </head>
 <body>
 <div class="nav">
   <div>
-    <div class="nav-logo">⚙️ OMRAN PROJECT DASHBOARD v2</div>
-    <div class="nav-sub">الزوايا الذهبية × شركة عُمان للتنمية السياحية — سري داخلي | تحديث: مارس 2026</div>
+    <div class="nav-logo">🗺️ خارطة طريق تحصيل المستحقات — OMRAN</div>
+    <div class="nav-sub">الزوايا الذهبية | 3 شركاء | تحديث مارس 2026 | المراحل القادمة فقط</div>
   </div>
-  <div style="text-align:left;font-size:10px;color:var(--muted);">3 شركاء | حسن · أحمد · عزيز</div>
+  <div style="text-align:left;">
+    <div style="font-size:11px;font-weight:700;color:var(--green2);">✅ الدفعة 2 مقبوضة</div>
+    <div style="font-size:9px;color:var(--muted);">المتبقي: 43,563 OMR</div>
+  </div>
 </div>
 <div class="tabs">
-  <div class="tab active" onclick="showTab('ov')">🏠 نظرة عامة</div>
-  <div class="tab" onclick="showTab('p1')">📦 1761 — الدوم</div>
-  <div class="tab" onclick="showTab('p2')">🎬 1762 — المحتوى</div>
-  <div class="tab" onclick="showTab('mail')">📧 سجل الإيميلات</div>
-  <div class="tab" onclick="showTab('legal')">⚖️ القانوني والمخاطر</div>
-  <div class="tab" onclick="showTab('split')">👥 التوزيع</div>
+  <div class="tab active" onclick="showTab('ov')">📊 نظرة عامة</div>
+  <div class="tab" onclick="showTab('road1')">📦 خارطة 1761</div>
+  <div class="tab" onclick="showTab('road2')">🎬 خارطة 1762</div>
+  <div class="tab" onclick="showTab('warn')">🔴 الضمان والمخاطر</div>
+  <div class="tab" onclick="showTab('eng')">🔧 المهندس الصيني</div>
 </div>
 
-<!-- ══════════════ OVERVIEW ══════════════ -->
+<!-- ══════ OVERVIEW ══════ -->
 <div class="page active" id="tab-ov">
-<h2 class="pt">📊 نظرة شاملة على المشروعين <span>بيانات محدّثة من ملف الحسابات + الإيميلات</span></h2>
+<h2 class="pt">📊 الوضع الحالي + ما تبقّى <span>محدّث — دفعة 2 مقبوضة ✅</span></h2>
+
 <div class="grid-4" style="margin-bottom:12px;">
-  <div class="kpi gold"><div class="kpi-label">إجمالي قيمة العقدين (إجمالي)</div><div class="kpi-value">100,854</div><div class="kpi-sub">51,858 + 48,995 ريال عماني</div></div>
-  <div class="kpi green"><div class="kpi-label">المقبوض من عمران ✅</div><div class="kpi-value">50,999</div><div class="kpi-sub">36,301 (1761) + 14,698 (1762)</div></div>
-  <div class="kpi amber"><div class="kpi-label">الفاتورة المرسلة - لم تُدفع</div><div class="kpi-value">5,186</div><div class="kpi-sub">10% مشروع 1761 — أكتوبر 2025</div></div>
-  <div class="kpi blue"><div class="kpi-label">إجمالي الربح المتوقع</div><div class="kpi-value">56,674</div><div class="kpi-sub">18,891 لكل شريك</div></div>
+  <div class="kpi green"><div class="kpi-label">المقبوض الكلي حتى الآن</div><div class="kpi-value">51,486</div><div class="kpi-sub">36,301 + 5,186 + 10,000 (1762) → ومنها الأرصدة الصافية</div></div>
+  <div class="kpi amber"><div class="kpi-label">المتبقي لاستلامه</div><div class="kpi-value">43,563</div><div class="kpi-sub">10,372 (1761) + 33,192 (1762)</div></div>
+  <div class="kpi red"><div class="kpi-label">ضمان ينتهي تقريباً</div><div class="kpi-value">~7 أشهر</div><div class="kpi-sub">12 شهر من التسليم — أكتوبر/نوفمبر 2026</div></div>
+  <div class="kpi blue"><div class="kpi-label">للشريك عند الاكتمال</div><div class="kpi-value">~18,953</div><div class="kpi-sub">نصيب كل شريك من الربح الكلي</div></div>
 </div>
-<div class="grid-4" style="margin-bottom:14px;">
-  <div class="kpi amber"><div class="kpi-label">رصيد الحساب الحالي</div><div class="kpi-value">15,572</div><div class="kpi-sub">قابل للتوزيع (5,191 للشريك)</div></div>
-  <div class="kpi amber"><div class="kpi-label">دفعات متبقية 1761</div><div class="kpi-value">15,557</div><div class="kpi-sub">3 دفعات (10%×3) مستحقة</div></div>
-  <div class="kpi amber"><div class="kpi-label">دفعات متبقية 1762</div><div class="kpi-value">34,297</div><div class="kpi-sub">3 دفعات (10%+20%+40%)</div></div>
-  <div class="kpi red"><div class="kpi-label">الموقع لم يُحدَّد!</div><div class="kpi-value">مُعلَّق</div><div class="kpi-sub">عمران طالب المواصفات 30/11/2025</div></div>
-</div>
-<div class="grid-2">
-  <div class="section">
-    <div class="sh"><h3>📦 1761 — استيراد الدوم</h3><span class="badge b-amber">انتظار الموقع</span></div>
-    <div style="padding:14px;">
-      <div style="display:flex;justify-content:space-between;margin-bottom:8px;"><span style="font-size:10px;color:var(--muted);">نسبة الإنجاز</span><span style="font-size:11px;font-weight:700;color:var(--amber2);">75%</span></div>
-      <div class="prog-wrap" style="margin-bottom:12px;"><div class="prog-bar pb-orange" style="width:75%"></div></div>
-      <table><tr><td>قيمة العقد (إجمالي مع VAT)</td><td class="num tc-gold">51,858.45 OMR</td></tr>
-      <tr><td>الدفعة 1 (70%) ✅ مقبوضة</td><td class="num tc-green">36,300.92</td></tr>
-      <tr><td>الدفعة 2 (10%) 🔄 مرسلة</td><td class="num tc-orange">5,185.85</td></tr>
-      <tr><td>الدفعة 3 (10%) ⏳</td><td class="num tc-amber">5,185.85</td></tr>
-      <tr><td>الدفعة 4 (10%) ⏳</td><td class="num tc-amber">5,185.85</td></tr>
-      <tr><td>مصاريف الاستيراد الكلي</td><td class="num tc-red">-30,048.19</td></tr>
-      <tr style="background:rgba(22,101,52,.05)"><td><b>ربح صافي متوقع</b></td><td class="num tc-green" style="font-size:13px;">19,340.81</td></tr></table>
-      <div class="alert a-orange" style="margin-top:10px;">🔄 فاتورة الـ 10% (5,185 ريال) مرسلة أكتوبر 2025 — لم تُدفع بعد</div>
-    </div>
-  </div>
-  <div class="section">
-    <div class="sh"><h3>🎬 1762 — المحتوى والتنفيذ</h3><span class="badge b-amber">قيد التنفيذ</span></div>
-    <div style="padding:14px;">
-      <div style="display:flex;justify-content:space-between;margin-bottom:8px;"><span style="font-size:10px;color:var(--muted);">نسبة الإنجاز</span><span style="font-size:11px;font-weight:700;color:var(--blue2);">55%</span></div>
-      <div class="prog-wrap" style="margin-bottom:12px;"><div class="prog-bar pb-blue" style="width:55%"></div></div>
-      <table><tr><td>قيمة العقد (إجمالي مع VAT)</td><td class="num tc-gold">48,995.10 OMR</td></tr>
-      <tr><td>الدفعة 1 (30%) ✅ مقبوضة</td><td class="num tc-green">14,698.53</td></tr>
-      <tr><td>الدفعة 2 (10%) ⏳ بعد التسليم</td><td class="num tc-amber">4,899.51</td></tr>
-      <tr><td>الدفعة 3 (20%) ⏳ التركيب</td><td class="num tc-amber">9,799.02</td></tr>
-      <tr><td>الدفعة 4 (40%) ⏳ النهائي</td><td class="num tc-amber">19,598.04</td></tr>
-      <tr><td>مصاريف التصوير والمعدات</td><td class="num tc-red">-7,888.62</td></tr>
-      <tr style="background:rgba(22,101,52,.05)"><td><b>ربح صافي متوقع</b></td><td class="num tc-green" style="font-size:13px;">37,518.35</td></tr></table>
-      <div class="alert a-green" style="margin-top:10px;">✅ Draft 1 شبه جاهز — تسليمه يستحق 4,899 ريال فوراً</div>
-    </div>
+
+<!-- SUMMARY TABLE -->
+<div class="section" style="margin-bottom:12px;">
+  <div class="sh"><h3>💰 جدول الدفعات الكاملة — محدّث</h3></div>
+  <div style="padding:4px 0;">
+    <table>
+      <thead>
+        <tr><th>المشروع</th><th>الدفعة</th><th class="ltr">%</th><th class="ltr">المبلغ (OMR)</th><th>الشرط</th><th>الحالة</th><th class="ltr">توقع الاستلام</th></tr>
+      </thead>
+      <tbody>
+        <tr style="background:rgba(22,101,52,.05)"><td>1761 الدوم</td><td>الدفعة 1</td><td class="num">70%</td><td class="num tc-green">36,300.92</td><td>توقيع العقد</td><td><span class="pill p-green">✅ مقبوض</span></td><td class="num tc-muted">يناير 2025</td></tr>
+        <tr style="background:rgba(22,101,52,.05)"><td>1761 الدوم</td><td>الدفعة 2</td><td class="num">10%</td><td class="num tc-green">5,185.85</td><td>الشحن والتسليم</td><td><span class="pill p-green">✅ مقبوض</span></td><td class="num tc-muted">مارس 2026</td></tr>
+        <tr style="background:rgba(212,165,32,.06)"><td>1761 الدوم</td><td><b>الدفعة 3</b></td><td class="num">10%</td><td class="num tc-amber">5,185.85</td><td><b>إتمام التركيب</b></td><td><span class="pill p-amber">⏳ تحتاج موقع</span></td><td class="num tc-amber">بعد الموقع +30 يوم</td></tr>
+        <tr style="background:rgba(212,165,32,.06)"><td>1761 الدوم</td><td><b>الدفعة 4</b></td><td class="num">10%</td><td class="num tc-amber">5,185.85</td><td><b>التشغيل والتسليم</b></td><td><span class="pill p-amber">⏳ بعد التركيب</span></td><td class="num tc-amber">بعد الدفعة 3 +15 يوم</td></tr>
+        <tr><td colspan="7" style="padding:4px;background:rgba(30,58,92,.4);"></td></tr>
+        <tr style="background:rgba(22,101,52,.05)"><td>1762 المحتوى</td><td>الدفعة 1</td><td class="num">30%</td><td class="num tc-green">14,698.53</td><td>توقيع العقد</td><td><span class="pill p-green">✅ مقبوض</span></td><td class="num tc-muted">يناير 2025</td></tr>
+        <tr style="background:rgba(249,115,22,.06)"><td>1762 المحتوى</td><td><b>الدفعة 2</b></td><td class="num">10%</td><td class="num tc-orange">4,899.51</td><td><b>تسليم Draft 1</b></td><td><span class="pill p-orange">🔄 جاهز — أرسل!</span></td><td class="num tc-orange">هذا الأسبوع</td></tr>
+        <tr style="background:rgba(212,165,32,.06)"><td>1762 المحتوى</td><td><b>الدفعة 3</b></td><td class="num">20%</td><td class="num tc-amber">9,799.02</td><td><b>التركيب + دمج الدوم</b></td><td><span class="pill p-amber">⏳ بعد الموقع</span></td><td class="num tc-amber">بعد تركيب الدوم</td></tr>
+        <tr style="background:rgba(153,27,27,.06)"><td>1762 المحتوى</td><td><b>الدفعة 4</b></td><td class="num">40%</td><td class="num tc-red">18,664.94</td><td><b>التسليم النهائي + قبول</b></td><td><span class="pill p-red">⏳ نهاية المشروع</span></td><td class="num tc-red">آخر دفعة</td></tr>
+        <tr><td colspan="7" style="padding:4px;background:rgba(30,58,92,.4);"></td></tr>
+        <tr style="background:rgba(212,165,32,.08)"><td colspan="3"><b>إجمالي ما يجب استلامه</b></td><td class="num tc-gold" style="font-size:14px;">43,563.17</td><td colspan="2">—</td><td class="num tc-muted">حسب الجدول</td></tr>
+      </tbody>
+    </table>
   </div>
 </div>
+
+<!-- BLOCKER -->
 <div class="section">
-  <div class="sh"><h3>🚨 التنبيهات العاجلة — حسب الأولوية</h3></div>
-  <div style="padding:14px;display:flex;flex-direction:column;gap:7px;">
-    <div class="alert a-red">🔴 <b>عاجل:</b> فاتورة GA-FD-1761-2025/002 (5,185 ريال) مرسلة من أكتوبر 2025 ولم تُدفع — أرسل تذكيراً رسمياً الآن وCc إبراهيم الشعيلي + حظاء البادي</div>
-    <div class="alert a-red">🔴 <b>عاجل:</b> عمران طلبت مواصفات الدوم + الموقع في 30/11/2025 ولم يتضح الموقع حتى الآن — يجب الرد بالمواصفات وإعادة تأكيد انتظار تحديد الموقع منهم</div>
-    <div class="alert a-amber">🟡 <b>مهم:</b> عمران أرسلت إيميلاً تهديدياً في 23/10/2025 ("لا تحديثات، لا خطة") — أحمد ردّ بقوة في 14/11/2025، لكن يجب الاستمرار في التوثيق</div>
-    <div class="alert a-amber">🟡 <b>مهم:</b> النطاق النهائي المتفق: 8 تجارب VR + فيديو دوم 15 دقيقة — هذا يختلف عن العقد الأصلي (10 دقائق + 5 VR مجاناً) — يجب Amendment رسمي</div>
-    <div class="alert a-green">🟢 <b>موقف قوي:</b> عمران علّقت المشروع رسمياً في 7/1/2025 (موثّق في محضر اجتماع حسن) — أنت لم تتأخر، هم من أوقفوا!</div>
+  <div class="sh"><h3>🚦 العوائق الحالية وحلولها</h3></div>
+  <div style="padding:14px;">
+    <table>
+      <thead><tr><th>العائق</th><th>المشروع المتأثر</th><th>من مسؤوليته؟</th><th>الإجراء المطلوب</th><th>الأولوية</th></tr></thead>
+      <tbody>
+        <tr><td><b>📍 الموقع لم يُحدَّد</b><br><span class="tc-muted" style="font-size:9px;">عمران طالبت بالمواصفات 30/11</span></td><td>1761 + 1762</td><td class="tc-red"><b>عمران ✓</b></td><td>أرسل مواصفات الدوم + اطلب تحديد الموقع خطياً بموعد</td><td><span class="pill p-red">عاجل جداً</span></td></tr>
+        <tr><td><b>🕐 ضمان ينفد</b><br><span class="tc-muted" style="font-size:9px;">12 شهر من التسليم — يجري الآن!</span></td><td>1761</td><td class="tc-red"><b>خطر مشترك</b></td><td>أشعر عمران رسمياً أن الضمان يجب أن يبدأ من التركيب</td><td><span class="pill p-red">عاجل جداً</span></td></tr>
+        <tr><td><b>📄 Draft 1 لم يُسلَّم</b><br><span class="tc-muted" style="font-size:9px;">4,899 ريال معلّقة</span></td><td>1762</td><td class="tc-amber"><b>أنت ✓</b></td><td>سلّم Draft 1 هذا الأسبوع بإيميل رسمي</td><td><span class="pill p-orange">عاجل</span></td></tr>
+        <tr><td><b>✈️ تأشيرة المهندس الصيني</b><br><span class="tc-muted" style="font-size:9px;">يحتاج وقتاً للتجهيز</span></td><td>1761</td><td class="tc-amber"><b>أنت ✓</b></td><td>ابدأ إجراءات التأشيرة الآن قبل تحديد الموقع</td><td><span class="pill p-amber">ابدأ الآن</span></td></tr>
+        <tr><td><b>📝 لا Amendment للنطاق</b><br><span class="tc-muted" style="font-size:9px;">8 VR + 15 دق ≠ 5 VR + 10 دق</span></td><td>1762</td><td class="tc-amber"><b>مشترك</b></td><td>اطلب Amendment رسمي قبل التسليم النهائي</td><td><span class="pill p-amber">مهم</span></td></tr>
+      </tbody>
+    </table>
   </div>
 </div>
 </div>
 
-<!-- ══════════════ PROJECT 1761 ══════════════ -->
-<div class="page" id="tab-p1">
-<h2 class="pt">📦 مشروع 1761 — استيراد معدات الدوم الغامر <span>PA/1067/2024 + الفواتير</span></h2>
-<div class="grid-4" style="margin-bottom:12px;">
-  <div class="kpi gold"><div class="kpi-label">قيمة BPA/1067</div><div class="kpi-value">49,389</div><div class="kpi-sub">OMR صافي (بعد VAT)</div></div>
-  <div class="kpi green"><div class="kpi-label">مقبوض 70%</div><div class="kpi-value">36,301</div><div class="kpi-sub">✅ GA-FD 2025/001</div></div>
-  <div class="kpi amber"><div class="kpi-label">مرسلة — لم تُدفع 10%</div><div class="kpi-value">5,186</div><div class="kpi-sub">🔄 GA-FD-1761-2025/002</div></div>
-  <div class="kpi blue"><div class="kpi-label">الربح الصافي المتوقع</div><div class="kpi-value">19,341</div><div class="kpi-sub">بعد 30,048 مصاريف الصين</div></div>
+<!-- ══════ ROADMAP 1761 ══════ -->
+<div class="page" id="tab-road1">
+<h2 class="pt">📦 خارطة الطريق — 1761 الدوم <span>المتبقي: 10,371.70 OMR | 3,457 للشريك</span></h2>
+
+<div class="rm-stage">
+  <div class="rm-header green">
+    <div><div style="font-size:10px;color:rgba(255,255,255,.6);">المرحلة</div><div class="rm-title">✅ تمّت — الدفعات 1 و2</div><div class="rm-sub">70% + 10% = 80% مستلمة</div></div>
+    <div style="text-align:left;"><div class="rm-amount tc-green">41,487 OMR</div><div style="font-size:9px;color:var(--muted);">مقبوض</div></div>
+  </div>
 </div>
-<div class="grid-13">
-  <div class="section">
-    <div class="sh"><h3>📅 تايم لاين</h3></div>
-    <div class="tl">
-      <div class="tl-row"><div class="tl-date">ديسمبر 2024<br>RFP صدر</div><div class="tl-lw"><div class="tl-dot td-done">✓</div><div class="tl-conn done"></div></div><div class="tl-content"><div class="tl-title">RFP-1761 صدر</div><div class="tl-detail">19 ديسمبر 2024 | أُغلق 26 ديسمبر</div><div class="tt tt-done">مكتمل</div></div></div>
-      <div class="tl-row"><div class="tl-date">31 ديسمبر 2024<br>BPA</div><div class="tl-lw"><div class="tl-dot td-done">✓</div><div class="tl-conn done"></div></div><div class="tl-content"><div class="tl-title">توقيع BPA/1067</div><div class="tl-detail">49,389 OMR | حتى يونيو 2028</div><div class="tt tt-done">موقّع</div></div></div>
-      <div class="tl-row"><div class="tl-date">يناير–مارس 2025<br>الشراء</div><div class="tl-lw"><div class="tl-dot td-done">✓</div><div class="tl-conn done"></div></div><div class="tl-content"><div class="tl-title">✅ استلام 70% = 36,301 OMR</div><div class="tl-detail">الدفعة الأولى مستلمة</div><div class="tt tt-done">مقبوض</div></div></div>
-      <div class="tl-row"><div class="tl-date">فبراير–أغسطس<br>الصين</div><div class="tl-lw"><div class="tl-dot td-done">✓</div><div class="tl-conn done"></div></div><div class="tl-content"><div class="tl-title">دفع الصين دفعتين</div><div class="tl-detail">دفعة 1: 13,907 OMR | دفعة 2: 15,575 OMR<br>+ زيارة أحمد للسعودية: 520 OMR</div><div class="tt tt-done">مكتمل</div></div></div>
-      <div class="tl-row"><div class="tl-date">سبتمبر 2025<br>تحديث</div><div class="tl-lw"><div class="tl-dot td-done">✓</div><div class="tl-conn done"></div></div><div class="tl-content"><div class="tl-title">حسن للعمران: "الدوم تحت التصنيع"</div><div class="tl-detail">إيميل 17/9/2025 — "متوقع نهاية أكتوبر"</div><div class="tt tt-done">بلّغت</div></div></div>
-      <div class="tl-row"><div class="tl-date">أكتوبر 2025<br>فاتورة</div><div class="tl-lw"><div class="tl-dot td-prog">!</div><div class="tl-conn prog"></div></div><div class="tl-content"><div class="tl-title">🔄 فاتورة الـ 10% مرسلة</div><div class="tl-detail">GA-FD-1761-2025/002 | 5,185.85 OMR<br>أرسلتها 27/10، طالبها حظاء 10/11، أرسلت 10/11</div><div class="tt tt-prog">معلّقة — لم تُدفع</div></div></div>
-      <div class="tl-row"><div class="tl-date">2025 – الآن<br>وصول</div><div class="tl-lw"><div class="tl-dot td-done">✓</div><div class="tl-conn"></div></div><div class="tl-content"><div class="tl-title">✅ الدوم وصل!</div><div class="tl-detail">المعدة موجودة جاهزة للتركيب</div><div class="tt tt-done">وصل</div></div></div>
-      <div class="tl-row"><div class="tl-date">نوفمبر 2025<br>طلب عمران</div><div class="tl-lw"><div class="tl-dot td-blk">✗</div><div class="tl-conn"></div></div><div class="tl-content"><div class="tl-title">❌ عمران طالبت بمواصفات ومكان</div><div class="tl-detail">إيميل حظاء 30/11/2025: "مواصفات تقنية + رندرز + الموقع"<br>الموقع لم يُحدَّد حتى الآن!</div><div class="tt tt-blk">مُعلَّق — عمران</div></div></div>
-      <div class="tl-row"><div class="tl-date">مستقبلاً<br>التركيب</div><div class="tl-lw"><div class="tl-dot td-pend">○</div></div><div class="tl-content"><div class="tl-title">التركيب + التشغيل = 3 دفعات (30%)</div><div class="tl-detail">إجمالي: 15,557 OMR عند التنفيذ</div><div class="tt tt-pend">معلّق</div></div></div>
+
+<div class="rm-stage">
+  <div class="rm-header red">
+    <div>
+      <div style="font-size:10px;color:rgba(255,255,255,.6);">الخطوة الحرجة — مُعلَّقة على عمران</div>
+      <div class="rm-title">🔴 تحديد الموقع — BLOCKER</div>
+      <div class="rm-sub">هذه الخطوة تفتح كل ما بعدها</div>
+    </div>
+    <div class="rm-num">⛔</div>
+  </div>
+  <div class="rm-body">
+    <div class="rm-grid">
+      <div class="rm-box"><div class="rm-box-label">من يحدده؟</div><div class="rm-box-val tc-red">عمران — ليس أنت</div></div>
+      <div class="rm-box"><div class="rm-box-label">ما طلبوه (30/11/2025)</div><div class="rm-box-val">مواصفات تقنية + رندرز + جدول تنفيذ</div></div>
+      <div class="rm-box"><div class="rm-box-label">ماذا تنتظر منك؟</div><div class="rm-box-val">إرسال المواصفات → ثم ينظرون ويختارون الموقع</div></div>
+    </div>
+    <div class="rm-actions">
+      <h4>⚡ الإجراءات الواجبة الآن</h4>
+      <div class="action-item"><div class="action-num">1</div><div>أرسل <b>مواصفات الدوم التقنية</b> لعمران (حظاء + إبراهيم الشعيلي)<br><span class="tc-muted">قطر 7م، بروجكتورات، سيرفر، متطلبات الكهرباء والمساحة</span></div></div>
+      <div class="action-item"><div class="action-num">2</div><div>في نفس الإيميل: <b>اطلب تحديد الموقع بموعد رسمي</b><br><span class="tc-muted">"نطلب تأكيد الموقع قبل [تاريخ] لتجنب تضرر ضمان المعدة"</span></div></div>
+      <div class="action-item"><div class="action-num">3</div><div><b>أشعرهم بضيق وقت الضمان</b> — 12 شهر من التسليم ينتهي ~أكتوبر 2026<br><span class="tc-muted">اكتب: "الضمان بدأ من تاريخ الوصول لعُمان — نطلب التسريع"</span></div></div>
+    </div>
+    <div class="rm-warning">إذا لم يحددوا الموقع قبل يونيو 2026 → ستنتهي أكثر من نصف مدة الضمان قبل التركيب!</div>
+  </div>
+</div>
+
+<div class="rm-stage">
+  <div class="rm-header amber">
+    <div>
+      <div style="font-size:10px;color:rgba(255,255,255,.6);">بعد تحديد الموقع</div>
+      <div class="rm-title">🔧 مرحلة التركيب → الدفعة 3</div>
+      <div class="rm-sub">إتمام التركيب الكامل في الموقع المعتمد</div>
+    </div>
+    <div style="text-align:left;"><div class="rm-amount tc-amber">5,185.85</div><div style="font-size:9px;color:var(--muted);">OMR عند الإنجاز</div></div>
+  </div>
+  <div class="rm-body">
+    <div class="rm-grid">
+      <div class="rm-box"><div class="rm-box-label">مدة التركيب</div><div class="rm-box-val">10–21 يوم (حسب الموقع)</div></div>
+      <div class="rm-box"><div class="rm-box-label">المهندس الصيني</div><div class="rm-box-val tc-amber">مطلوب — تأشيرة + سفر + إقامة</div></div>
+      <div class="rm-box"><div class="rm-box-label">الميزانية الإضافية</div><div class="rm-box-val tc-red">~900–1,500 OMR غير محسوبة</div></div>
+    </div>
+    <div class="rm-actions">
+      <h4>⚡ خطوات تنفيذ مرحلة التركيب</h4>
+      <div class="action-item"><div class="action-num">1</div><div><b>ابدأ إجراءات التأشيرة للمهندس الصيني الآن</b> (تستغرق 2–4 أسابيع)<br><span class="tc-muted">تأشيرة عُمان للصيني: 150 OMR | سفارة عُمان في الصين</span></div></div>
+      <div class="action-item"><div class="action-num">2</div><div><b>تنسيق مع الشركة الصينية:</b> تأكيد جدول الزيارة بمجرد تأكيد الموقع</div></div>
+      <div class="action-item"><div class="action-num">3</div><div><b>استلام محضر تسليم التركيب</b> موقّع من عمران → يُطلق الدفعة 3 رسمياً</div></div>
+      <div class="action-item"><div class="action-num">4</div><div><b>أرسل فاتورة الدفعة 3 فور اكتمال التركيب</b> مع صور التوثيق</div></div>
+    </div>
+    <div class="rm-warning">تكاليف المهندس الصيني (~1,200 OMR) غير مدرجة في ميزانيتك الحالية — احسبها من الدفعة 3!</div>
+  </div>
+</div>
+
+<div class="rm-stage">
+  <div class="rm-header blue">
+    <div>
+      <div style="font-size:10px;color:rgba(255,255,255,.6);">آخر مرحلة</div>
+      <div class="rm-title">🟢 التشغيل والتدريب والتسليم → الدفعة 4</div>
+      <div class="rm-sub">Operational Testing + Staff Training + Final Handover</div>
+    </div>
+    <div style="text-align:left;"><div class="rm-amount tc-blue">5,185.85</div><div style="font-size:9px;color:var(--muted);">OMR الدفعة الأخيرة</div></div>
+  </div>
+  <div class="rm-body">
+    <div class="rm-grid">
+      <div class="rm-box"><div class="rm-box-label">المتطلب القانوني</div><div class="rm-box-val">Operational Testing Certificate</div></div>
+      <div class="rm-box"><div class="rm-box-label">التدريب المشمول</div><div class="rm-box-val">Staff Training على تشغيل الدوم</div></div>
+      <div class="rm-box"><div class="rm-box-label">يبدأ عند التسليم</div><div class="rm-box-val tc-amber">Basic Support 3 سنوات<br>+ Warranty 12 شهر</div></div>
+    </div>
+    <div class="rm-actions">
+      <h4>⚡ خطوات إنجاز التسليم النهائي</h4>
+      <div class="action-item"><div class="action-num">1</div><div><b>توثيق الاختبار التشغيلي</b> بفيديو + صور + حضور ممثل عمران</div></div>
+      <div class="action-item"><div class="action-num">2</div><div><b>تدريب 3–5 موظفين</b> من عمران على التشغيل — وثّق بالتوقيع</div></div>
+      <div class="action-item"><div class="action-num">3</div><div><b>احصل على Project Completion Certificate</b> موقّع قبل إرسال الفاتورة</div></div>
+      <div class="action-item"><div class="action-num">4</div><div><b>مهم:</b> سلّم Maintenance Plan + Operation Manual + Warranty Document في نفس اليوم</div></div>
+    </div>
+    <div class="rm-warning"><b>الفخ المحتمل:</b> عمران ستنشئ Punch List من العيوب وتتأخر في توقيع الإتمام. اشترط موعداً (14 يوم) لقبول/رفض التسليم — بعده يُعتبر مقبولاً تلقائياً.</div>
+  </div>
+</div>
+</div>
+
+<!-- ══════ ROADMAP 1762 ══════ -->
+<div class="page" id="tab-road2">
+<h2 class="pt">🎬 خارطة الطريق — 1762 المحتوى <span>المتبقي: 33,363.47 OMR | 11,121 للشريك</span></h2>
+
+<div class="rm-stage">
+  <div class="rm-header green">
+    <div><div style="font-size:10px;color:rgba(255,255,255,.6);">تمّت</div><div class="rm-title">✅ الدفعة 1 — مقبوضة</div><div class="rm-sub">30% = 14,698.53 OMR | يناير 2025</div></div>
+    <div style="text-align:left;"><div class="rm-amount tc-green">14,699 OMR</div></div>
+  </div>
+</div>
+
+<div class="rm-stage">
+  <div class="rm-header amber" style="background:linear-gradient(135deg,rgba(194,65,12,.4),rgba(194,65,12,.2));">
+    <div>
+      <div style="font-size:10px;color:rgba(255,255,255,.6);">جاهزة — أرسلها الآن</div>
+      <div class="rm-title">🔄 الدفعة 2 (10%) — تسليم Draft 1</div>
+      <div class="rm-sub">هذه الدفعة جاهزة — تحتاج فقط إرسال Draft 1 رسمياً</div>
+    </div>
+    <div style="text-align:left;"><div class="rm-amount tc-orange">4,899.51</div><div style="font-size:9px;color:var(--orange2);">OMR — هذا الأسبوع!</div></div>
+  </div>
+  <div class="rm-body">
+    <div class="rm-grid">
+      <div class="rm-box"><div class="rm-box-label">ما تسلّمه</div><div class="rm-box-val">Draft 1 — نسخة مقيّدة (MP4 محمي)</div></div>
+      <div class="rm-box"><div class="rm-box-label">ما لا تسلّمه</div><div class="rm-box-val tc-red">الملفات الخام + الكود — حتى الدفعة 4!</div></div>
+      <div class="rm-box"><div class="rm-box-label">ما تطلبه مع التسليم</div><div class="rm-box-val">تأكيد كتابي بالاستلام + جدول المراجعة</div></div>
+    </div>
+    <div class="rm-actions">
+      <h4>⚡ خطوات الدفعة 2</h4>
+      <div class="action-item"><div class="action-num">1</div><div><b>أرسل إيميل رسمي:</b> "نُسلّم Draft 1 وفق PO/1133 المرحلة الثانية — نطلب الدفعة 2"</div></div>
+      <div class="action-item"><div class="action-num">2</div><div><b>أرفق:</b> Draft 1 Video (محمي) + قائمة المحتوى المنجز</div></div>
+      <div class="action-item"><div class="action-num">3</div><div><b>اطلب ردّاً خلال 7 أيام</b> وإلا يُعدّ مقبولاً تلقائياً</div></div>
+      <div class="action-item"><div class="action-num">4</div><div><b>فاتورة جديدة:</b> 4,899.51 OMR + VAT 5% = 5,144.49 OMR إجمالي</div></div>
     </div>
   </div>
-  <div>
-    <div class="section" style="margin-bottom:12px;">
-      <div class="sh"><h3>💰 تفصيل مالي 1761</h3></div>
-      <table>
-        <thead><tr><th>البند</th><th class="ltr">المبلغ (OMR)</th><th>الحالة</th></tr></thead>
-        <tbody>
-          <tr style="background:rgba(212,165,32,.04)"><td><b>قيمة العقد الإجمالي</b></td><td class="num tc-gold">51,858.45</td><td><span class="pill p-gold">BPA/1067</span></td></tr>
-          <tr><td>VAT 5% (مخصوم)</td><td class="num tc-red">-2,469.45</td><td><span class="pill p-amber">ضريبة</span></td></tr>
-          <tr><td><b>صافي الإيراد</b></td><td class="num tc-blue">49,389.00</td><td><span class="pill p-blue">صافي</span></td></tr>
-          <tr style="background:rgba(22,101,52,.04)"><td>✅ الدفعة 1 (70%)</td><td class="num tc-green">36,300.92</td><td><span class="pill p-green">مقبوض</span></td></tr>
-          <tr style="background:rgba(249,115,22,.06)"><td>🔄 الدفعة 2 (10%) — مرسلة</td><td class="num tc-orange">5,185.85</td><td><span class="pill p-orange">معلّقة</span></td></tr>
-          <tr><td>⏳ الدفعة 3 (10%)</td><td class="num tc-amber">5,185.85</td><td><span class="pill p-amber">بعد التركيب</span></td></tr>
-          <tr><td>⏳ الدفعة 4 (10%)</td><td class="num tc-amber">5,185.85</td><td><span class="pill p-amber">التشغيل</span></td></tr>
-          <tr style="background:rgba(153,27,27,.04)"><td>دفعة الصين 1</td><td class="num tc-red">-13,906.75</td><td><span class="pill p-red">صُرف</span></td></tr>
-          <tr style="background:rgba(153,27,27,.04)"><td>دفعة الصين 2</td><td class="num tc-red">-15,575.09</td><td><span class="pill p-red">صُرف</span></td></tr>
-          <tr style="background:rgba(153,27,27,.04)"><td>زيارة أحمد + مصاريف</td><td class="num tc-red">-566.35</td><td><span class="pill p-red">صُرف</span></td></tr>
-          <tr style="background:rgba(212,165,32,.06)"><td><b>الرصيد الحالي (بعد VAT)</b></td><td class="num tc-amber" style="font-size:13px;">3,783.28</td><td><span class="pill p-amber">الحساب</span></td></tr>
-          <tr style="background:rgba(22,101,52,.08)"><td><b>الربح الصافي المتوقع الكلي</b></td><td class="num tc-green" style="font-size:14px;">19,340.81</td><td><span class="pill p-green">المتوقع</span></td></tr>
-        </tbody>
-      </table>
+</div>
+
+<div class="rm-stage">
+  <div class="rm-header amber">
+    <div>
+      <div style="font-size:10px;color:rgba(255,255,255,.6);">مرتبط بمشروع 1761</div>
+      <div class="rm-title">⚙️ الدفعة 3 (20%) — التركيب والدمج</div>
+      <div class="rm-sub">تسليم المحتوى كاملاً + دمجه في الدوم</div>
     </div>
-    <div class="section">
-      <div class="sh"><h3>📋 مواصفات الدوم المطلوب تقديمها لعمران (عاجل)</h3><span class="badge b-red">عاجل</span></div>
-      <div style="padding:12px;">
-        <div class="alert a-red">عمران طلبت في 30/11/2025 الوثائق التالية فوراً — يجب إرسالها</div>
-        <table>
-          <thead><tr><th>المطلوب</th><th>التفاصيل</th></tr></thead>
-          <tbody>
-            <tr><td>المواصفات التقنية</td><td>قطر الدوم، المسقط، البروجكتورات، الصوت، السيرفر</td></tr>
-            <tr><td>رندرز / تصاميم مبدئية</td><td>كيف يبدو الدوم داخلياً وخارجياً</td></tr>
-            <tr><td>متطلبات المحتوى والتشغيل</td><td>متطلبات الكهرباء، المساحة، التهوية</td></tr>
-            <tr><td>الجدول الزمني المقترح</td><td>من تحديد الموقع → التركيب → التشغيل</td></tr>
-            <tr><td>الموقع المقترح</td><td class="tc-red"><b>يجب أن يقرره عمران! ليس أنت!</b></td></tr>
-          </tbody>
-        </table>
+    <div style="text-align:left;"><div class="rm-amount tc-amber">9,799.02</div><div style="font-size:9px;color:var(--muted);">OMR — بعد تركيب الدوم</div></div>
+  </div>
+  <div class="rm-body">
+    <div class="rm-grid">
+      <div class="rm-box"><div class="rm-box-label">المتطلب</div><div class="rm-box-val">تركيب الدوم أولاً ← BLOCKER</div></div>
+      <div class="rm-box"><div class="rm-box-label">ما تسلّمه</div><div class="rm-box-val">8 تجارب VR + فيديو دوم 15 دق مثبّتة</div></div>
+      <div class="rm-box"><div class="rm-box-label">المراجعات المسموحة</div><div class="rm-box-val tc-amber">جولتان مجانيتان — وثّق أي طلب إضافي</div></div>
+    </div>
+    <div class="rm-actions">
+      <h4>⚡ خطوات الدفعة 3</h4>
+      <div class="action-item"><div class="action-num">1</div><div><b>قبل التسليم:</b> احصل على Amendment رسمي يؤكد النطاق الجديد (8 VR + 15 دق)</div></div>
+      <div class="action-item"><div class="action-num">2</div><div><b>توثيق الدمج:</b> فيديو للمحتوى يعمل داخل الدوم — توقيع ممثل عمران</div></div>
+      <div class="action-item"><div class="action-num">3</div><div><b>Punch List:</b> اطلب إرسال أي ملاحظات خلال 14 يوم وإلا يُعدّ مقبولاً</div></div>
+    </div>
+    <div class="rm-warning">هذه الدفعة ومشروع 1761 مترابطان — تأخير الموقع يؤخر 9,799 ريال! اجمع المطالبتين في رسالة واحدة لعمران.</div>
+  </div>
+</div>
+
+<div class="rm-stage">
+  <div class="rm-header blue">
+    <div>
+      <div style="font-size:10px;color:rgba(255,255,255,.6);">الدفعة الكبرى الأخيرة</div>
+      <div class="rm-title">🏆 الدفعة 4 (40%) — التسليم النهائي</div>
+      <div class="rm-sub">Final Delivery + Acceptance + Ownership Transfer</div>
+    </div>
+    <div style="text-align:left;"><div class="rm-amount tc-green">18,664.94</div><div style="font-size:9px;color:var(--muted);">OMR — أكبر دفعة</div></div>
+  </div>
+  <div class="rm-body">
+    <div class="rm-grid">
+      <div class="rm-box"><div class="rm-box-label">ما يجب تسليمه</div><div class="rm-box-val">كل المحتوى + الكود + الملفات الخام</div></div>
+      <div class="rm-box"><div class="rm-box-label">ملكية تنقل لعمران</div><div class="rm-box-val tc-amber">بعد استلام الدفعة 4 كاملة فقط!</div></div>
+      <div class="rm-box"><div class="rm-box-label">Basic Support يبدأ</div><div class="rm-box-val">3 سنوات دعم فني عبر Ticketing</div></div>
+    </div>
+    <div class="rm-actions">
+      <h4>⚡ كيف تضمن استلام 18,665 ريال؟</h4>
+      <div class="action-item"><div class="action-num">1</div><div><b>لا تسلّم الكود الكامل</b> حتى يصل تحويل الدفعة 4 لحسابك!</div></div>
+      <div class="action-item"><div class="action-num">2</div><div><b>احصل على Final Acceptance Certificate</b> موقّع من إبراهيم الشعيلي أو حظاء البادي</div></div>
+      <div class="action-item"><div class="action-num">3</div><div><b>أرسل فاتورة تفصيلية</b> تشمل كل مكونات الدفعة</div></div>
+      <div class="action-item"><div class="action-num">4</div><div><b>Delivery Note موقّع:</b> قائمة كاملة بكل ملف ومحتوى يتسلّمونه</div></div>
+    </div>
+    <div class="rm-warning"><b>الفخ الأكبر:</b> عمران ستطلب "مراجعة نهائية" وتؤخر الدفع. أرسل رسمياً: "المراجعات مشمولة في جولتين فقط — أي تغيير إضافي = تكلفة منفصلة."</div>
+  </div>
+</div>
+</div>
+
+<!-- ══════ WARRANTY ══════ -->
+<div class="page" id="tab-warn">
+<h2 class="pt">🔴 خطر الضمان — عاجل <span>12 شهر من التسليم — الساعة تدق!</span></h2>
+
+<div class="warrant-box">
+  <div class="warrant-title">⏰ الضمان يجري والدوم غير مركّب!</div>
+  <div style="display:flex;align-items:baseline;gap:12px;margin-bottom:8px;">
+    <div class="warrant-clock">~7 أشهر</div>
+    <div style="font-size:12px;color:var(--muted);">من الوقت المتبقي في الضمان (تقديري)</div>
+  </div>
+  <div class="warrant-sub">
+    📄 نص العقد BPA/1067 بند 5: <b>"warranty period, which shall not in any case be less than twelve (12) months from the date of delivery"</b><br>
+    🔍 هذا يعني: الضمان بدأ من يوم وصل الدوم لعُمان — وليس من يوم التركيب!<br>
+    🚨 إذا وصل الدوم أكتوبر/نوفمبر 2025 → الضمان ينتهي أكتوبر/نوفمبر 2026<br>
+    📅 الآن: مارس 2026 = مرّ ~5 أشهر من الضمان بدون تركيب!
+  </div>
+  <div class="warrant-grid" style="margin-top:12px;">
+    <div class="wbox"><div class="wbox-label">تاريخ الوصول (تقريبي)</div><div class="wbox-val tc-amber">أكتوبر–نوفمبر 2025</div></div>
+    <div class="wbox"><div class="wbox-label">انتهاء الضمان</div><div class="wbox-val tc-red">أكتوبر–نوفمبر 2026</div></div>
+    <div class="wbox"><div class="wbox-label">متبقٍ تقريباً</div><div class="wbox-val tc-red">~7 أشهر فقط!</div></div>
+  </div>
+</div>
+
+<div class="section" style="margin-bottom:12px;">
+  <div class="sh"><h3>⚖️ التداعيات القانونية للضمان</h3></div>
+  <div style="padding:14px;">
+    <div class="alert a-red">🔴 <b>السيناريو الأسوأ:</b> إذا تأخر الموقع حتى ديسمبر 2026 — يُركَّب الدوم وضمانه منتهٍ! عمران ستطالبك بضمان ولن تجد!</div>
+    <div class="alert a-amber">🟡 <b>عمران ستقول:</b> "العقد يقول 12 شهر من التسليم — هذا ما اتفقنا عليه." وستكون محقّة قانونياً!</div>
+    <div class="alert a-green">🟢 <b>حجتك القانونية:</b> "التأخير في التركيب ناتج عن عدم تحديدكم للموقع — بالتالي الضمان يجب أن يُحسب من تاريخ التركيب لأن التأخير من طرفكم (Force of Client)."</div>
+    <table style="margin-top:12px;">
+      <thead><tr><th>الإجراء</th><th>كيف</th><th>الأولوية</th></tr></thead>
+      <tbody>
+        <tr><td><b>إشعار الضمان لعمران</b></td><td>إيميل رسمي: "الدوم وصل [تاريخ]. الضمان المتفق 12 شهر يجب أن يبدأ من التركيب لأن التأخير من طرفكم"</td><td><span class="pill p-red">هذا الأسبوع</span></td></tr>
+        <tr><td><b>مراسلة الشركة الصينية</b></td><td>اسألهم: هل الضمان من التسليم أم التركيب؟ واطلب تأكيداً خطياً</td><td><span class="pill p-red">هذا الأسبوع</span></td></tr>
+        <tr><td><b>Amendment بالضمان</b></td><td>اطلب تعديل نص العقد: "الضمان 12 شهر من تاريخ اكتمال التركيب"</td><td><span class="pill p-amber">هذا الشهر</span></td></tr>
+        <tr><td><b>توثيق التأخير</b></td><td>أرسل فوراً: "ننتظر تحديد الموقع منذ [تاريخ]. هذا يؤثر على مدة الضمان."</td><td><span class="pill p-amber">فوري</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="section">
+  <div class="sh"><h3>📋 تفاصيل الضمان والدعم المتفق عليه</h3></div>
+  <div style="padding:14px;">
+    <div class="alert a-blue">عمران اختارت: <b>Option 2 + Basic Support</b> = 49,389 OMR<br>Option 2 = 42,189 OMR | Basic Support 3 سنوات = 7,200 OMR</div>
+    <table>
+      <thead><tr><th>البند</th><th>التفاصيل</th><th>مشمول في السعر؟</th></tr></thead>
+      <tbody>
+        <tr><td><b>الضمان</b></td><td>12 شهر على كل المكونات من تاريخ التسليم</td><td><span class="pill p-green">✅ مجاني — Free</span></td></tr>
+        <tr><td><b>Basic Support</b></td><td>3 سنوات دعم فني عبر Ticketing System</td><td><span class="pill p-green">✅ مشمول (7,200 OMR)</span></td></tr>
+        <tr><td>Premium Support</td><td>3 سنوات 24/7</td><td><span class="pill p-muted">❌ لم يختاروا</span></td></tr>
+        <tr><td><b>متطلبات الصيانة</b></td><td>Regular Inspection + Remote Assistance + Onsite Support</td><td><span class="pill p-green">✅ مشمول في Basic</span></td></tr>
+        <tr><td><b>قطع الغيار</b></td><td>Spare Parts provisioning خلال فترة الدعم</td><td><span class="pill p-amber">⚠️ ضمن Basic — تحقق من التفاصيل</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+</div>
+
+<!-- ══════ CHINESE ENGINEER ══════ -->
+<div class="page" id="tab-eng">
+<h2 class="pt">🔧 المهندس الصيني — التخطيط والتكاليف <span>مطلوب للتركيب</span></h2>
+
+<div class="section" style="margin-bottom:12px;">
+  <div class="sh"><h3>✈️ ما نعرفه عن المهندس الصيني</h3></div>
+  <div style="padding:14px;">
+    <div class="alert a-gold">📋 عرض أسعارنا ذكر: "Installing the dome system at client's location within Muscat" — التركيب مشمول في السعر. لكن تكاليف سفر المهندس من الصين (تذكرة + تأشيرة + إقامة) قد لا تكون مشمولة بوضوح.</div>
+    <div class="grid-2">
+      <div>
+        <div class="alert a-blue"><b>ما هو مشمول في 49,389؟</b><br>
+        ✅ عمالة التركيب (Installation Labor)<br>
+        ✅ المعدات والكابلات<br>
+        ✅ الإشراف التقني<br>
+        ❓ تذكرة السفر من الصين؟ (غير واضح)<br>
+        ❓ الإقامة في عُمان؟ (غير واضح)</div>
+      </div>
+      <div>
+        <div class="alert a-amber"><b>ما يجب أن تسأله من الشركة الصينية:</b><br>
+        ❓ هل تكلفة المهندس مشمولة في عقدك معهم؟<br>
+        ❓ كم مدة الزيارة المطلوبة؟<br>
+        ❓ ما المتطلبات التقنية للموقع؟<br>
+        ❓ متى يمكنهم الحضور بعد إشعار؟</div>
       </div>
     </div>
   </div>
 </div>
-</div>
-
-<!-- ══════════════ PROJECT 1762 ══════════════ -->
-<div class="page" id="tab-p2">
-<h2 class="pt">🎬 مشروع 1762 — المحتوى والتنفيذ <span>PO/1133/2025</span></h2>
-<div class="grid-4" style="margin-bottom:12px;">
-  <div class="kpi gold"><div class="kpi-label">قيمة PO/1133</div><div class="kpi-value">46,662</div><div class="kpi-sub">OMR صافي (بعد VAT)</div></div>
-  <div class="kpi green"><div class="kpi-label">مقبوض 30%</div><div class="kpi-value">14,699</div><div class="kpi-sub">✅ الدفعة الأولى</div></div>
-  <div class="kpi amber"><div class="kpi-label">متبقي 70%</div><div class="kpi-value">34,297</div><div class="kpi-sub">3 دفعات عند التسليم</div></div>
-  <div class="kpi blue"><div class="kpi-label">الربح الصافي المتوقع</div><div class="kpi-value">37,518</div><div class="kpi-sub">بعد 7,888 مصاريف التصوير</div></div>
-</div>
 
 <div class="section" style="margin-bottom:12px;">
-  <div class="sh"><h3>📋 النطاق الفعلي المتفق عليه — مهم جداً</h3><span class="badge b-amber">تغيّر النطاق</span></div>
-  <div style="padding:14px;">
-    <div class="alert a-amber">⚠️ النطاق تغيّر عدة مرات خلال المفاوضات — هذا التسلسل موثّق في الإيميلات</div>
-    <table>
-      <thead><tr><th>المرحلة</th><th>ما طلبه عمران</th><th>التاريخ</th><th>الحالة</th></tr></thead>
-      <tbody>
-        <tr><td>النطاق الأصلي (RFP)</td><td>10 دقائق فيديو دوم لـ14 موقع</td><td>ديسمبر 2024</td><td><span class="pill p-blue">RFP</span></td></tr>
-        <tr><td>Clarification 4</td><td>8-10 دق دوم + 5 VR مجاناً</td><td>31/12/2024</td><td><span class="pill p-green">متفق عليه رسمياً</span></td></tr>
-        <tr><td>اجتماع يناير</td><td>14 VR + 3-7 فيديو دوم (scope creep!)</td><td>7/1/2025</td><td><span class="pill p-red">رفضتم — إيميل حسن</span></td></tr>
-        <tr><td>بعد التعليق</td><td>مفاوضات جارية</td><td>2025</td><td><span class="pill p-amber">مفاوضة</span></td></tr>
-        <tr style="background:rgba(22,101,52,.05)"><td><b>النطاق النهائي المتفق (الآن)</b></td><td><b>~8 تجارب VR + فيديو دوم 15 دقيقة</b></td><td>2026</td><td><span class="pill p-green">متفق — يجب Amendment</span></td></tr>
-      </tbody>
-    </table>
-    <div class="alert a-red" style="margin-top:10px;">🚨 <b>خطر قانوني:</b> العقد (PO/1133) يقول 5 VR + دوم 10 دق. أنت الآن تنفّذ 8 VR + 15 دق. يجب Amendment رسمي قبل التسليم وإلا عمران قد تحسبها خارج النطاق!</div>
-  </div>
-</div>
-
-<div class="grid-13">
-  <div class="section">
-    <div class="sh"><h3>📅 تايم لاين 1762</h3></div>
-    <div class="tl">
-      <div class="tl-row"><div class="tl-date">22 ديسمبر 2024</div><div class="tl-lw"><div class="tl-dot td-done">✓</div><div class="tl-conn done"></div></div><div class="tl-content"><div class="tl-title">RFP-1762 صدر</div><div class="tl-detail">إغلاق 24 ديسمبر → مدّد 29 ديسمبر</div><div class="tt tt-done">مكتمل</div></div></div>
-      <div class="tl-row"><div class="tl-date">31 ديسمبر 2024</div><div class="tl-lw"><div class="tl-dot td-done">✓</div><div class="tl-conn done"></div></div><div class="tl-content"><div class="tl-title">Clarification 4 — النطاق رسمي</div><div class="tl-detail">8-10 دق دوم + 5 VR مجاناً<br>حسن وافق رسمياً بالإيميل</div><div class="tt tt-done">موثّق</div></div></div>
-      <div class="tl-row"><div class="tl-date">1 يناير 2025</div><div class="tl-lw"><div class="tl-dot td-done">✓</div><div class="tl-conn done"></div></div><div class="tl-content"><div class="tl-title">عمران طلبت ملكية كل شيء</div><div class="tl-detail">معدات + محتوى + كود = ملكية عمران<br>حسن وافق رسمياً (خطر: لا تسلّم الكود قبل الدفع!)</div><div class="tt tt-done">وافقت</div></div></div>
-      <div class="tl-row"><div class="tl-date">20 يناير 2025</div><div class="tl-lw"><div class="tl-dot td-done">✓</div><div class="tl-conn done"></div></div><div class="tl-content"><div class="tl-title">PO/1133 صدر + وقّعت</div><div class="tl-detail">46,662 OMR | وقّعت 23/1/2025</div><div class="tt tt-done">موقّع</div></div></div>
-      <div class="tl-row"><div class="tl-date">7 يناير 2025</div><div class="tl-lw"><div class="tl-dot td-blk">!</div><div class="tl-conn done"></div></div><div class="tl-content"><div class="tl-title">🚨 عمران علّقت المشروع رسمياً!</div><div class="tl-detail">حظاء أعلن تعليق مشروع المحتوى في الاجتماع<br>موثّق في محضر اجتماع أرسله حسن بإيميل!</div><div class="tt tt-blk">عمران علّقت</div></div></div>
-      <div class="tl-row"><div class="tl-date">فبراير–سبتمبر 2025</div><div class="tl-lw"><div class="tl-dot td-done">✓</div><div class="tl-conn done"></div></div><div class="tl-content"><div class="tl-title">✅ التصوير في المواقع</div><div class="tl-detail">الجبل الأخضر ✅ وادي شاب ✅ صلالة ✅<br>تنوف ✅ الحطب ✅ صور/الجحل ✅ البارموتر ✅</div><div class="tt tt-done">جارٍ</div></div></div>
-      <div class="tl-row"><div class="tl-date">11 أغسطس 2025</div><div class="tl-lw"><div class="tl-dot td-done">✓</div><div class="tl-conn done"></div></div><div class="tl-content"><div class="tl-title">استلام معدات عمران</div><div class="tl-detail">حظاء وافق على إعارة المعدات<br>استلمت في 12/8/2025</div><div class="tt tt-done">موثّق</div></div></div>
-      <div class="tl-row"><div class="tl-date">مارس 2026 — الآن</div><div class="tl-lw"><div class="tl-dot td-prog">⚙</div><div class="tl-conn prog"></div></div><div class="tl-content"><div class="tl-title">🔄 Draft 1 شبه جاهز</div><div class="tl-detail">8 VR + دوم 15 دقيقة — بانتظار التسليم</div><div class="tt tt-prog">جارٍ</div></div></div>
-      <div class="tl-row"><div class="tl-date">قريباً</div><div class="tl-lw"><div class="tl-dot td-pend">○</div></div><div class="tl-content"><div class="tl-title">تسليم Draft 1 → الدفعة 2 (10%)</div><div class="tl-detail">= 4,899.51 OMR مستحقة فور التسليم</div><div class="tt tt-pend">عاجل</div></div></div>
-    </div>
-  </div>
-  <div>
-    <div class="section" style="margin-bottom:12px;">
-      <div class="sh"><h3>💰 تفصيل مالي 1762</h3></div>
-      <table>
-        <thead><tr><th>البند</th><th class="ltr">المبلغ (OMR)</th><th>الحالة</th></tr></thead>
-        <tbody>
-          <tr style="background:rgba(212,165,32,.04)"><td><b>قيمة العقد الإجمالي</b></td><td class="num tc-gold">48,995.10</td><td><span class="pill p-gold">PO/1133</span></td></tr>
-          <tr><td>VAT 5%</td><td class="num tc-red">-2,333.10</td><td><span class="pill p-amber">ضريبة</span></td></tr>
-          <tr><td><b>صافي الإيراد</b></td><td class="num tc-blue">46,662.00</td><td><span class="pill p-blue">صافي</span></td></tr>
-          <tr style="background:rgba(22,101,52,.04)"><td>✅ الدفعة 1 (30%)</td><td class="num tc-green">14,698.53</td><td><span class="pill p-green">مقبوض</span></td></tr>
-          <tr><td>⏳ الدفعة 2 (10%) عند التسليم</td><td class="num tc-amber">4,899.51</td><td><span class="pill p-amber">Draft 1</span></td></tr>
-          <tr><td>⏳ الدفعة 3 (20%) التركيب</td><td class="num tc-amber">9,799.02</td><td><span class="pill p-amber">دمج بالدوم</span></td></tr>
-          <tr><td>⏳ الدفعة 4 (40%) النهائي</td><td class="num tc-amber">18,664.94</td><td><span class="pill p-amber">التسليم الكامل</span></td></tr>
-          <tr style="background:rgba(153,27,27,.04)"><td>الدرون + PC + Insta360</td><td class="num tc-red">-5,321.00</td><td><span class="pill p-red">صُرف</span></td></tr>
-          <tr style="background:rgba(153,27,27,.04)"><td>مصاريف السفر والتصوير</td><td class="num tc-red">-2,567.62</td><td><span class="pill p-red">صُرف</span></td></tr>
-          <tr style="background:rgba(212,165,32,.06)"><td><b>الرصيد الحالي</b></td><td class="num tc-amber" style="font-size:13px;">4,476.81</td><td><span class="pill p-amber">الحساب</span></td></tr>
-          <tr style="background:rgba(22,101,52,.08)"><td><b>الربح الصافي المتوقع</b></td><td class="num tc-green" style="font-size:14px;">37,518.35</td><td><span class="pill p-green">المتوقع</span></td></tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="section">
-      <div class="sh"><h3>📍 المواقع المصوّرة</h3></div>
-      <div style="padding:8px 0;">
-        <table>
-          <thead><tr><th>الموقع</th><th>الحالة</th><th>النوع</th></tr></thead>
-          <tbody>
-            <tr><td>الجبل الأخضر (فيا فراتا)</td><td><span class="pill p-green">✓ مصوّر</span></td><td>VR</td></tr>
-            <tr><td>وادي شاب</td><td><span class="pill p-green">✓ مصوّر</span></td><td>VR</td></tr>
-            <tr><td>قوس تنوف</td><td><span class="pill p-green">✓ مصوّر</span></td><td>VR + دوم</td></tr>
-            <tr><td>على الحطب</td><td><span class="pill p-green">✓ مصوّر</span></td><td>VR</td></tr>
-            <tr><td>صلالة (متعدد)</td><td><span class="pill p-green">✓ مصوّر</span></td><td>VR + دوم</td></tr>
-            <tr><td>وادي الجحل / صور</td><td><span class="pill p-green">✓ مصوّر</span></td><td>VR</td></tr>
-            <tr><td>البارموتر (السوادي)</td><td><span class="pill p-green">✓ مصوّر</span></td><td>VR</td></tr>
-            <tr><td>مواقع إضافية</td><td><span class="pill p-amber">⏳ حسب الاتفاق</span></td><td>VR</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
-</div>
-</div>
-
-<!-- ══════════════ EMAIL LOG ══════════════ -->
-<div class="page" id="tab-mail">
-<h2 class="pt">📧 سجل الإيميلات الحرجة <span>186 إيميل مرتّب — المهم فقط</span></h2>
-<div class="alert a-gold" style="margin-bottom:14px;">📊 تحليل من 390 إيميل إجمالي — عُرضت هنا الإيميلات الحرجة التي تؤثر على حقوقك القانونية والمالية</div>
-
-<div class="section" style="margin-bottom:12px;">
-  <div class="sh"><h3>🔴 إيميلات بالغة الأهمية — محطات رئيسية</h3></div>
-  <div style="padding:12px;">
-
-    <div class="email-item" style="border-right:3px solid var(--red2);">
-      <div class="email-head"><div class="email-subj">🚨 اجتماع 7 يناير 2025 — عمران علّقت رسمياً</div><div class="email-date">07 Jan 2025</div></div>
-      <div class="email-from">من: حسن → عمران | الموضوع: محضر اجتماع 7/1/2025</div>
-      <div class="email-body">حظاء أعلن في الاجتماع <b>تعليق مشروع المحتوى رسمياً</b> بسبب عدم وضوح النطاق. حسن وثّق هذا في إيميل محضر الاجتماع وأرسله لعمران. <b>هذا أقوى ورقة قانونية لديك — التأخير من عمران وموثّق!</b></div>
-    </div>
-
-    <div class="email-item" style="border-right:3px solid var(--red2);">
-      <div class="email-head"><div class="email-subj">🚨 31 ديسمبر 2024 — Clarification 4: النطاق الرسمي</div><div class="email-date">31 Dec 2024</div></div>
-      <div class="email-from">من: عمران (شيخة الوائلي) → كل المتقدمين</div>
-      <div class="email-body">عمران وضّحت رسمياً: <b>"8-10 دقائق دوم لـ14 موقع + 5 VR لـ5 مواقع"</b>. حسن أكّد: <b>"السعر يشمل 8-10 دق دوم + 5 VR مجاناً"</b>. هذا هو العقد الرسمي المتفق عليه — أي زيادة تحتاج تسعيرة إضافية!</div>
-    </div>
-
-    <div class="email-item" style="border-right:3px solid var(--amber2);">
-      <div class="email-head"><div class="email-subj">⚠️ 7 يناير 2025 — حسن يرفض Scope Creep</div><div class="email-date">07 Jan 2025</div></div>
-      <div class="email-from">من: حسن → عمران (حظاء + شيخة + عيد + توارة + ليلى)</div>
-      <div class="email-body">حسن وثّق التغييرات المتراكمة في النطاق: النطاق الأصلي → طلب 1 (VR مجاني) → طلب 2 (14 VR + 3 دوم) → طلب 3 (14 VR + 5 دوم) → طلب 4 (7 دوم). رفض الامتثال وطالب بالوضوح. <b>مستند قوي!</b></div>
-    </div>
-
-    <div class="email-item" style="border-right:3px solid var(--amber2);">
-      <div class="email-head"><div class="email-subj">⚠️ 23 أكتوبر 2025 — إيميل تهديدي من عمران</div><div class="email-date">23 Oct 2025</div></div>
-      <div class="email-from">من: حظاء البادي → الزوايا الذهبية (حسن + أحمد)</div>
-      <div class="email-body">"لم نتلقَ أي تحديثات... لا خطة مشروع معتمدة... أي إجراءات غير مخطط لها ستُحسب في التقييم النهائي للتكاليف". <b>خطير — يجب الرد فوراً بتوثيق ما أنجزت</b></div>
-    </div>
-
-    <div class="email-item" style="border-right:3px solid var(--green2);">
-      <div class="email-head"><div class="email-subj">✅ 14 نوفمبر 2025 — رد أحمد القوي على عمران</div><div class="email-date">14 Nov 2025</div></div>
-      <div class="email-from">من: أحمد السويدي → حظاء البادي</div>
-      <div class="email-body">رد قوي محترف: "التأخيرات جاءت من طرفكم... فريقنا عمل بأقصى طاقته... لا يمكن توجيه الاتهامات لنا في حين أن الأدلة تثبت العكس". <b>ممتاز — هذا الرد يحميكم!</b></div>
-    </div>
-
-    <div class="email-item" style="border-right:3px solid var(--amber2);">
-      <div class="email-head"><div class="email-subj">⚠️ 30 نوفمبر 2025 — عمران لا يزال يطلب المواصفات والموقع</div><div class="email-date">30 Nov 2025</div></div>
-      <div class="email-from">من: حظاء البادي → الزوايا الذهبية</div>
-      <div class="email-body">طلب مواصفات الدوم التقنية + رندرز + الموقع. <b>الموقع لم يُحدَّد بعد حتى هذا التاريخ!</b> هذا يؤكد أن التأخير في التركيب يعود لعمران.</div>
-    </div>
-
-    <div class="email-item" style="border-right:3px solid var(--orange2);">
-      <div class="email-head"><div class="email-subj">🔄 27 أكتوبر 2025 — فاتورة الـ 10% مرسلة</div><div class="email-date">27 Oct 2025 → 10 Nov 2025</div></div>
-      <div class="email-from">من: حسن → عيد الفارسي + توارة + ليلى + حظاء (Cc)</div>
-      <div class="email-body">فاتورة GA-FD-1761-2025/002: إجمالي 5,185.845 OMR (4,938.9 + VAT 246.9). حظاء طالبها 10/11، حسن أرسلها 10/11. <b>لم تُدفع حتى الآن!</b></div>
-    </div>
-
-    <div class="email-item" style="border-right:3px solid var(--blue2);">
-      <div class="email-head"><div class="email-subj">ℹ️ 11 أغسطس 2025 — استلام معدات عمران بإذن رسمي</div><div class="email-date">11 Aug 2025</div></div>
-      <div class="email-from">من: حظاء البادي → حسن | الموضوع: موافقة على استخدام المعدات</div>
-      <div class="email-body">حظاء وافق رسمياً: "confirm, please arrange to collect the required devices tomorrow". <b>موثّق — استخدامكم للمعدات بإذن رسمي من عمران</b></div>
-    </div>
-
-    <div class="email-item" style="border-right:3px solid var(--blue2);">
-      <div class="email-head"><div class="email-subj">ℹ️ 1 يناير 2025 — الموافقة على ملكية عمران للكل</div><div class="email-date">01 Jan 2025</div></div>
-      <div class="email-from">من: حسن → شيخة الوائلي</div>
-      <div class="email-body">حسن وافق على نقل ملكية: المعدات (17,952 OMR) + المحتوى + الكود لعمران بعد انتهاء المشروع. <b>تذكر: لا تسلّم الكود الكامل قبل استلام الدفعة الأخيرة!</b></div>
-    </div>
-
-  </div>
-</div>
-</div>
-
-<!-- ══════════════ LEGAL ══════════════ -->
-<div class="page" id="tab-legal">
-<h2 class="pt">⚖️ التحليل القانوني والمخاطر <span>استشاري قانوني — سري</span></h2>
-<div class="alert a-gold" style="margin-bottom:14px;">⚖️ هذا تحليل استشاري مبني على مراجعة الوثائق. للإجراءات الرسمية يُنصح بمحامٍ مُرخَّص في عُمان.</div>
-<div class="grid-2" style="margin-bottom:12px;">
-  <div>
-    <div class="section"><div class="sh"><h3>✅ ما يقوّي موقفك</h3></div><div style="padding:12px;">
-      <div class="risk low"><div class="risk-body">✅ عمران علّقت المشروع رسمياً (7/1/2025) — موثّق في محضر اجتماع مرسل<br>✅ الدوم وصل فعلاً من الصين<br>✅ التصوير في 7+ مواقع منجز<br>✅ Draft 1 جاهز للتسليم<br>✅ أحمد ردّ بقوة على التهديد (14/11)<br>✅ استخدام معدات عمران بإذن رسمي موثّق<br>✅ كل المراسلات عبر إيميل رسمي محفوظ</div></div>
-    </div></div>
-  </div>
-  <div>
-    <div class="section"><div class="sh"><h3>⚠️ ما يُضعف موقفك</h3></div><div style="padding:12px;">
-      <div class="risk med"><div class="risk-body">❌ لا Amendment رسمي بالنطاق الجديد (8 VR + 15 دق) بدلاً من (5 VR + 10 دق)<br>❌ وافقت على ملكية عمران للكود — احذر من التسليم المبكر<br>❌ لم يصدر Formal Notice بتأخير عمران في الموقع<br>❌ الجدول الزمني منتهي رسمياً بدون مد رسمي</div></div>
-    </div></div>
-  </div>
-</div>
-<div class="section" style="margin-bottom:12px;">
-  <div class="sh"><h3>🚨 المخاطر الأولوية</h3></div>
-  <div style="padding:14px;">
-    <div class="risk high"><div class="risk-title">🔴 خطر عالٍ — لا Amendment للنطاق الجديد</div><div class="risk-body">العقد يقول 5 VR + دوم 10 دق. أنت تنفّذ 8 VR + دوم 15 دق. إذا سلّمت بدون Amendment، عمران ستقول: "هذا خارج العقد" وترفض جزءاً من الدفع!</div><div class="risk-action">أرسل خطاباً رسمياً: "بناءً على اتفاق شفهي + إيميل Clarification 4 + النقاشات اللاحقة، النطاق المتفق الآن 8 VR + 15 دق. نطلب Amendment رسمياً."</div></div>
-    <div class="risk high"><div class="risk-title">🔴 خطر عالٍ — ملكية الكود والمحتوى</div><div class="risk-body">وافقت في 1/1/2025 على نقل كامل الملكية لعمران. إذا سلّمت الكود الكامل + الملفات الخام قبل الدفع النهائي = لا تملك أي ورقة ضغط!</div><div class="risk-action">سلّم نسخة مقيّدة (MP4 محمية + Demo) لـDraft 1. الملفات الكاملة + الكود فقط عند الدفعة الأخيرة.</div></div>
-    <div class="risk high"><div class="risk-title">🔴 خطر عالٍ — فاتورة 10% لم تُدفع منذ أكتوبر</div><div class="risk-body">5,185 ريال مرسلة من أكتوبر 2025. هذا تأخير 5+ أشهر في الدفع. إذا استمر التأخير = حقك في المطالبة بفوائد تأخير.</div><div class="risk-action">أرسل إشعار رسمي اليوم: "فاتورة مستحقة منذ 5 أشهر. إذا لم تُسدَّد خلال 7 أيام = نحتفظ بحقنا في إيقاف التسليم."</div></div>
-    <div class="risk med"><div class="risk-title">🟡 خطر متوسط — الموقع لم يُحدَّد = التأخير على عمران</div><div class="risk-body">عمران لم تحدد موقع التركيب حتى 30/11/2025 رغم أن الدوم وصل. هذا يعني أي غرامة تأخير لا تنطبق عليك.</div><div class="risk-action">وثّق خطياً: "الدوم وصل [تاريخ]. نحن جاهزون للتركيب. ننتظر تحديد الموقع من طرفكم منذ [التاريخ]."</div></div>
-    <div class="risk med"><div class="risk-title">🟡 خطر متوسط — الجدول الزمني منتهٍ رسمياً</div><div class="risk-body">PO/1133 = مدة سنة من 20/1/2025. أي مارس 2026 = منتهي رسمياً بدون تمديد. عمران قد تستخدم هذا ضدك.</div><div class="risk-action">اطلب Amendment يمدد الجدول بصريح العبارة ويربط التواريخ بتحديد الموقع من عمران.</div></div>
-  </div>
-</div>
-<div class="section">
-  <div class="sh"><h3>⚡ الإجراءات العاجلة — هذا الأسبوع</h3></div>
-  <div style="padding:8px 0;">
-    <table>
-      <thead><tr><th>#</th><th>الإجراء</th><th>الأثر</th><th>الأولوية</th></tr></thead>
-      <tbody>
-        <tr><td style="font-weight:900;color:var(--red2);">1</td><td><b>تذكير الدفعة 5,185 ريال</b><br><span class="tc-muted" style="font-size:9px;">إيميل رسمي + Cc المدير المالي عمران</span></td><td class="tc-green">تحصيل 5,185 ريال</td><td><span class="pill p-red">اليوم</span></td></tr>
-        <tr><td style="font-weight:900;color:var(--red2);">2</td><td><b>إرسال مواصفات الدوم لعمران</b><br><span class="tc-muted" style="font-size:9px;">ردّ على إيميل 30/11/2025 حظاء</span></td><td class="tc-blue">إبقاء الحوار فعّالاً</td><td><span class="pill p-red">هذا الأسبوع</span></td></tr>
-        <tr><td style="font-weight:900;color:var(--amber2);">3</td><td><b>تسليم Draft 1 رسمياً</b><br><span class="tc-muted" style="font-size:9px;">إيميل + طلب صريح للدفعة 2 (4,899 ريال)</span></td><td class="tc-green">تحصيل 4,899 ريال</td><td><span class="pill p-amber">هذا الأسبوع</span></td></tr>
-        <tr><td style="font-weight:900;color:var(--amber2);">4</td><td><b>طلب Amendment للنطاق والجدول</b><br><span class="tc-muted" style="font-size:9px;">8 VR + 15 دق + تمديد حتى تحديد الموقع</span></td><td class="tc-blue">حماية قانونية</td><td><span class="pill p-amber">هذا الشهر</span></td></tr>
-        <tr><td style="font-weight:900;color:var(--blue2);">5</td><td><b>توثيق موقع الدوم بالصور + التاريخ</b><br><span class="tc-muted" style="font-size:9px;">إثبات الوصول + الجاهزية للتركيب</span></td><td class="tc-muted">أدلة قانونية</td><td><span class="pill p-blue">قريباً</span></td></tr>
-      </tbody>
-    </table>
-  </div>
-</div>
-</div>
-
-<!-- ══════════════ SPLIT ══════════════ -->
-<div class="page" id="tab-split">
-<h2 class="pt">👥 توزيع الأرباح — 3 شركاء <span>حسن · أحمد · عزيز</span></h2>
-<div class="grid-4" style="margin-bottom:12px;">
-  <div class="kpi green"><div class="kpi-label">إجمالي الربح المتوقع</div><div class="kpi-value">56,859</div><div class="kpi-sub">1761: 19,341 + 1762: 37,518</div></div>
-  <div class="kpi blue"><div class="kpi-label">للشريك الواحد (نهائي)</div><div class="kpi-value">18,953</div><div class="kpi-sub">OMR عند اكتمال المشروعين</div></div>
-  <div class="kpi amber"><div class="kpi-label">رصيد الحساب الحالي</div><div class="kpi-value">15,572</div><div class="kpi-sub">قابل للتوزيع الآن (5,191/شريك)</div></div>
-  <div class="kpi amber"><div class="kpi-label">دفعات قادمة إجمالي</div><div class="kpi-value">49,854</div><div class="kpi-sub">من 1761 + 1762 معاً</div></div>
-</div>
-<div class="grid-3" style="margin-bottom:12px;">
-  <div class="partner"><div class="p-av">👤</div><div class="p-name">حسن البلوشي</div><div class="p-role">صاحب المشروع</div><div class="p-amount">18,953 OMR</div><div class="p-label">النصيب المتوقع النهائي</div></div>
-  <div class="partner"><div class="p-av">👤</div><div class="p-name">أحمد السويدي</div><div class="p-role">مهندس ومستشار</div><div class="p-amount">18,953 OMR</div><div class="p-label">النصيب المتوقع النهائي</div></div>
-  <div class="partner"><div class="p-av">👤</div><div class="p-name">عزيز</div><div class="p-role">مبرمج</div><div class="p-amount">18,953 OMR</div><div class="p-label">النصيب المتوقع النهائي</div></div>
-</div>
-<div class="section">
-  <div class="sh"><h3>📊 تفصيل التوزيع حسب كل مشروع ومرحلة</h3></div>
+  <div class="sh"><h3>💰 تقدير تكاليف المهندس الصيني</h3></div>
   <div style="padding:4px 0;">
     <table>
-      <thead><tr><th>المصدر</th><th class="ltr">المبلغ الكلي</th><th class="ltr">للشريك 1</th><th class="ltr">للشريك 2</th><th class="ltr">للشريك 3</th><th>الحالة</th></tr></thead>
+      <thead><tr><th>البند</th><th class="ltr">التكلفة التقديرية (OMR)</th><th>ملاحظة</th></tr></thead>
       <tbody>
-        <tr style="background:rgba(212,165,32,.04)"><td><b>صافي ربح 1761</b></td><td class="num tc-gold">19,340.81</td><td class="num tc-blue">6,446.94</td><td class="num tc-blue">6,446.94</td><td class="num tc-blue">6,446.94</td><td><span class="pill p-amber">جزئي</span></td></tr>
-        <tr style="background:rgba(22,101,52,.04)"><td><b>صافي ربح 1762</b></td><td class="num tc-gold">37,518.35</td><td class="num tc-blue">12,506.12</td><td class="num tc-blue">12,506.12</td><td class="num tc-blue">12,506.12</td><td><span class="pill p-amber">جزئي</span></td></tr>
-        <tr style="background:rgba(212,165,32,.08)"><td><b>🏆 الإجمالي الكامل</b></td><td class="num tc-green" style="font-size:14px;">56,859.16</td><td class="num tc-green" style="font-size:14px;">18,953.05</td><td class="num tc-green" style="font-size:14px;">18,953.05</td><td class="num tc-green" style="font-size:14px;">18,953.05</td><td><span class="pill p-green">المتوقع</span></td></tr>
-        <tr style="background:rgba(14,165,233,.04)"><td><b>💵 للتوزيع الآن</b></td><td class="num tc-amber" style="font-size:13px;">15,572.33</td><td class="num tc-amber">5,190.78</td><td class="num tc-amber">5,190.78</td><td class="num tc-amber">5,190.78</td><td><span class="pill p-blue">متاح</span></td></tr>
+        <tr><td>تأشيرة عُمان للصيني</td><td class="num tc-amber">150–200</td><td>Visa on arrival أو مسبقة</td></tr>
+        <tr><td>تذكرة الطيران (الصين ↔ عُمان)</td><td class="num tc-amber">400–600</td><td>حسب الوقت والخط</td></tr>
+        <tr><td>الفندق (14–21 يوم × 20 OMR)</td><td class="num tc-amber">280–420</td><td>فندق بسيط قرب الموقع</td></tr>
+        <tr><td>المواصلات اليومية</td><td class="num tc-amber">100–150</td><td>تاكسي / استئجار</td></tr>
+        <tr><td>الوجبات والمصاريف اليومية</td><td class="num tc-amber">100–200</td><td>~10 OMR/يوم × 15 يوم</td></tr>
+        <tr><td>طوارئ وغير متوقع</td><td class="num tc-amber">100</td><td>—</td></tr>
+        <tr style="background:rgba(153,27,27,.06)"><td><b>الإجمالي التقديري</b></td><td class="num tc-red" style="font-size:14px;">1,130–1,670</td><td><b>خذ منها من دفعة التركيب</b></td></tr>
       </tbody>
     </table>
   </div>
 </div>
-<div class="section" style="margin-top:12px;">
-  <div class="sh"><h3>⏳ تسلسل الدفعات القادمة</h3></div>
-  <div style="padding:4px 0;">
-    <table>
-      <thead><tr><th>الدفعة</th><th>المشروع</th><th class="ltr">المبلغ</th><th>الشرط</th><th class="ltr">للشريك</th><th>التوقيت</th></tr></thead>
-      <tbody>
-        <tr><td>الدفعة 2 (10%)</td><td><span class="pill p-orange">1761 🔄</span></td><td class="num tc-orange">5,185.85</td><td>فاتورة مرسلة — تذكير</td><td class="num tc-blue">1,728.62</td><td><span class="pill p-red">الآن</span></td></tr>
-        <tr><td>الدفعة 2 (10%)</td><td><span class="pill p-blue">1762</span></td><td class="num tc-amber">4,899.51</td><td>تسليم Draft 1</td><td class="num tc-blue">1,633.17</td><td><span class="pill p-red">عاجل</span></td></tr>
-        <tr><td>الدفعة 3 (10%)</td><td><span class="pill p-orange">1761</span></td><td class="num tc-amber">5,185.85</td><td>بعد التركيب</td><td class="num tc-blue">1,728.62</td><td><span class="pill p-amber">بعد الموقع</span></td></tr>
-        <tr><td>الدفعة 3 (20%)</td><td><span class="pill p-blue">1762</span></td><td class="num tc-amber">9,799.02</td><td>دمج المحتوى بالدوم</td><td class="num tc-blue">3,266.34</td><td><span class="pill p-amber">بعد التركيب</span></td></tr>
-        <tr><td>الدفعة 4 (10%)</td><td><span class="pill p-orange">1761</span></td><td class="num tc-amber">5,185.85</td><td>التشغيل والاختبار</td><td class="num tc-blue">1,728.62</td><td><span class="pill p-amber">قريباً</span></td></tr>
-        <tr style="background:rgba(22,101,52,.06)"><td><b>الدفعة 4 (40%) النهائية</b></td><td><span class="pill p-blue">1762</span></td><td class="num tc-green" style="font-size:13px;">18,664.94</td><td>التسليم الكامل + قبول</td><td class="num tc-green">6,221.65</td><td><span class="pill p-amber">نهائي</span></td></tr>
-        <tr style="background:rgba(212,165,32,.06)"><td><b>الإجمالي القادم</b></td><td>—</td><td class="num tc-gold" style="font-size:14px;">48,921.02</td><td>—</td><td class="num tc-gold">16,307.01</td><td>—</td></tr>
-      </tbody>
-    </table>
+
+<div class="section">
+  <div class="sh"><h3>📋 خطوات إجراءات التأشيرة</h3></div>
+  <div style="padding:14px;">
+    <div class="rm-actions">
+      <h4>⚡ الخطوات العملية للتأشيرة</h4>
+      <div class="action-item"><div class="action-num">1</div><div><b>تواصل مع الشركة الصينية الآن</b> — اسألهم عن البيانات المطلوبة للتأشيرة (جواز سفر + صور)</div></div>
+      <div class="action-item"><div class="action-num">2</div><div><b>تقديم طلب التأشيرة</b> عبر الموقع الرسمي لوزارة الداخلية العُمانية (e.gov.om)<br><span class="tc-muted">يحتاج: كفيل عُماني (شركتك) + عقد العمل + بيانات المهندس</span></div></div>
+      <div class="action-item"><div class="action-num">3</div><div><b>مدة الإجراءات:</b> 2–4 أسابيع عادةً — ابدأ بمجرد تحديد الموقع</div></div>
+      <div class="action-item"><div class="action-num">4</div><div><b>احسب الوقت:</b> موقع مؤكد → 4 أسابيع تأشيرة → وصول المهندس → 14–21 يوم تركيب</div></div>
+      <div class="action-item"><div class="action-num">5</div><div><b>البديل السريع:</b> Visa on Arrival للصيني (إذا متاح) = أسرع لكن احتمالاً أغلى</div></div>
+    </div>
+    <div class="alert a-amber" style="margin-top:10px;">⏰ <b>الجدول الزمني الواقعي:</b><br>
+    الموقع مؤكد (شهر X) → تأشيرة 4 أسابيع → وصول (X+1) → تركيب 3 أسابيع (X+1.5) → تشغيل أسبوع (X+2)<br>
+    <b>إجمالي من تحديد الموقع إلى استلام الدفعة 3: ~2 شهر</b></div>
   </div>
 </div>
 </div>
 
 <script>
 function showTab(id){
-  document.querySelectorAll('.tab').forEach((t,i)=>{
-    const ids=['ov','p1','p2','mail','legal','split'];
-    t.classList.toggle('active',ids[i]===id);
-  });
-  document.querySelectorAll('.page').forEach(p=>{
-    p.classList.toggle('active',p.id==='tab-'+id);
-  });
+  document.querySelectorAll('.tab').forEach((t,i)=>{const ids=['ov','road1','road2','warn','eng'];t.classList.toggle('active',ids[i]===id);});
+  document.querySelectorAll('.page').forEach(p=>{p.classList.toggle('active',p.id==='tab-'+id);});
 }
 </script>
 </body>
