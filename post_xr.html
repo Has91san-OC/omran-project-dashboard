@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Golden Angles — XR Post</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700;900&display=swap" rel="stylesheet">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  font-family: 'Cairo', sans-serif;
+  background: #050D1A;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 40px 20px;
+}
+
+/* Instagram frame */
+.insta-frame {
+  background: #0D1117;
+  border: 1px solid #1E2A3A;
+  border-radius: 12px;
+  width: 480px;
+  overflow: hidden;
+  box-shadow: 0 30px 80px rgba(0,0,0,.8);
+}
+
+/* Header */
+.insta-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  background: #0D1117;
+  border-bottom: 1px solid #1E2A3A;
+}
+.insta-avatar {
+  width: 38px; height: 38px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #D4A520, #F0B429);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px;
+  border: 2px solid #D4A520;
+}
+.insta-username { font-size: 13px; font-weight: 800; color: #fff; }
+.insta-location { font-size: 10px; color: #8AAAC8; margin-top: 1px; }
+.insta-dots { margin-right: auto; color: #555; font-size: 20px; cursor: pointer; }
+
+/* THE POST IMAGE */
+.post-image {
+  width: 480px;
+  height: 480px;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(145deg, #050D1A 0%, #0B1E35 40%, #071828 100%);
+}
+
+/* Ambient glow orbs */
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(60px);
+  opacity: 0.35;
+}
+.orb1 { width:250px; height:250px; background:#0284C7; top:-60px; right:-40px; }
+.orb2 { width:200px; height:200px; background:#D4A520; bottom:30px; left:-50px; opacity:0.25; }
+.orb3 { width:150px; height:150px; background:#7C3AED; bottom:-20px; right:30px; opacity:0.3; }
+
+/* Grid lines (futuristic) */
+.grid-overlay {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(2,132,199,.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(2,132,199,.06) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* Top brand */
+.post-brand {
+  position: absolute;
+  top: 22px;
+  left: 0; right: 0;
+  text-align: center;
+  z-index: 10;
+}
+.post-brand-en {
+  font-size: 10px;
+  font-weight: 700;
+  color: rgba(212,165,32,.7);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 2px;
+}
+.post-brand-ar {
+  font-size: 16px;
+  font-weight: 900;
+  color: rgba(255,255,255,.9);
+}
+
+/* Center XR visual */
+.xr-center {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 5;
+}
+
+/* The "VR person" circle */
+.vr-circle {
+  width: 180px; height: 180px;
+  border-radius: 50%;
+  border: 2px solid rgba(2,132,199,.5);
+  position: relative;
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 24px;
+  animation: rotate 20s linear infinite;
+}
+.vr-circle::before {
+  content: '';
+  position: absolute;
+  inset: -8px;
+  border-radius: 50%;
+  border: 1px dashed rgba(212,165,32,.3);
+  animation: rotate 15s linear infinite reverse;
+}
+.vr-circle::after {
+  content: '';
+  position: absolute;
+  inset: -18px;
+  border-radius: 50%;
+  border: 1px solid rgba(2,132,199,.15);
+}
+@keyframes rotate { to { transform: rotate(360deg); } }
+
+.vr-icon {
+  font-size: 80px;
+  animation: float 3s ease-in-out infinite;
+  filter: drop-shadow(0 0 20px rgba(2,132,199,.8));
+}
+@keyframes float {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+/* Floating tags around circle */
+.float-tag {
+  position: absolute;
+  background: rgba(2,132,199,.15);
+  border: 1px solid rgba(2,132,199,.4);
+  border-radius: 8px;
+  padding: 5px 10px;
+  font-size: 10px;
+  font-weight: 800;
+  color: #38BDF8;
+  letter-spacing: .5px;
+  white-space: nowrap;
+  backdrop-filter: blur(4px);
+}
+.ft1 { top: 15%; right: 5%; border-color: rgba(212,165,32,.4); color: #FCD34D; background: rgba(212,165,32,.1); }
+.ft2 { top: 35%; left: 5%; }
+.ft3 { bottom: 30%; right: 5%; border-color: rgba(124,58,237,.4); color: #A78BFA; background: rgba(124,58,237,.1); }
+.ft4 { bottom: 18%; left: 8%; }
+
+/* XR Labels */
+.xr-labels {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.xr-badge {
+  padding: 8px 14px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 900;
+  letter-spacing: 1px;
+}
+.xr-vr { background: rgba(2,132,199,.2); border: 1px solid rgba(2,132,199,.5); color: #38BDF8; }
+.xr-ar { background: rgba(212,165,32,.15); border: 1px solid rgba(212,165,32,.4); color: #FCD34D; }
+.xr-mr { background: rgba(124,58,237,.2); border: 1px solid rgba(124,58,237,.4); color: #A78BFA; }
+.xr-main {
+  font-size: 28px; font-weight: 900;
+  color: #D4A520;
+  letter-spacing: 2px;
+  text-shadow: 0 0 30px rgba(212,165,32,.6);
+  padding: 8px 20px;
+  border: 2px solid rgba(212,165,32,.3);
+  border-radius: 12px;
+  background: rgba(212,165,32,.08);
+}
+
+/* Bottom bar */
+.post-bottom {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  padding: 18px 22px;
+  background: linear-gradient(transparent, rgba(5,13,26,.95));
+  text-align: center;
+  z-index: 10;
+}
+.post-tagline {
+  font-size: 13px;
+  font-weight: 700;
+  color: rgba(255,255,255,.85);
+  line-height: 1.6;
+  margin-bottom: 8px;
+}
+.post-tag-row {
+  font-size: 10px;
+  color: rgba(212,165,32,.7);
+  letter-spacing: .5px;
+}
+
+/* Insta actions */
+.insta-actions {
+  padding: 10px 14px 6px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: #0D1117;
+}
+.ia { font-size: 22px; cursor: pointer; }
+.ia:last-of-type { margin-right: auto; }
+.insta-likes {
+  padding: 0 14px 6px;
+  font-size: 12px;
+  font-weight: 800;
+  color: #fff;
+}
+.insta-caption {
+  padding: 2px 14px 10px;
+  font-size: 12px;
+  color: #E2E8F0;
+  line-height: 1.7;
+}
+.insta-caption .un { font-weight: 900; color: #fff; }
+.insta-hashtags {
+  padding: 0 14px 14px;
+  font-size: 11px;
+  color: #4A90D9;
+  line-height: 1.8;
+}
+
+/* Dots indicator */
+.insta-dots-bar {
+  display: flex; justify-content: center; gap: 4px;
+  padding: 6px; background: #0D1117;
+}
+.dot { width: 6px; height: 6px; border-radius: 50%; background: #4A90D9; }
+.dot.off { background: #333; }
+</style>
+</head>
+<body>
+
+<div class="insta-frame">
+
+  <!-- Insta Header -->
+  <div class="insta-header">
+    <div class="insta-avatar">🌟</div>
+    <div>
+      <div class="insta-username">goldenangles.om</div>
+      <div class="insta-location">مسقط، سلطنة عُمان</div>
+    </div>
+    <div class="insta-dots">···</div>
+  </div>
+
+  <!-- Post Visual -->
+  <div class="post-image">
+    <div class="orb orb1"></div>
+    <div class="orb orb2"></div>
+    <div class="orb orb3"></div>
+    <div class="grid-overlay"></div>
+
+    <!-- Brand top -->
+    <div class="post-brand">
+      <div class="post-brand-en">Golden Angles</div>
+      <div class="post-brand-ar">الزوايا الذهبية</div>
+    </div>
+
+    <!-- Floating tags -->
+    <div class="float-tag ft1">✨ Extended Reality</div>
+    <div class="float-tag ft2">🥽 Immersive Tech</div>
+    <div class="float-tag ft3">🌀 360° Content</div>
+    <div class="float-tag ft4">🎬 AI Production</div>
+
+    <!-- Center -->
+    <div class="xr-center">
+      <div class="vr-circle">
+        <div class="vr-icon">🥽</div>
+      </div>
+      <div class="xr-main">XR</div>
+      <div style="height:10px;"></div>
+      <div class="xr-labels">
+        <div class="xr-badge xr-vr">VR</div>
+        <div class="xr-badge xr-ar">AR</div>
+        <div class="xr-badge xr-mr">MR</div>
+      </div>
+    </div>
+
+    <!-- Bottom -->
+    <div class="post-bottom">
+      <div class="post-tagline">نصنع تجارب لا تُنسى<br>بتقنيات تتخطى حدود الواقع</div>
+      <div class="post-tag-row">🇴🇲 Made in Oman — World Class Level</div>
+    </div>
+  </div>
+
+  <!-- Actions -->
+  <div class="insta-actions">
+    <span class="ia">🤍</span>
+    <span class="ia">💬</span>
+    <span class="ia">✈️</span>
+    <span class="ia">🔖</span>
+  </div>
+
+  <!-- Likes -->
+  <div class="insta-likes">1,247 إعجاب</div>
+
+  <!-- Caption -->
+  <div class="insta-caption">
+    <span class="un">goldenangles.om</span> الواقع ممتع… لكن لما نضيف طبقة أخرى؟ 🌐✨<br><br>
+    في الزوايا الذهبية نشتغل بتقنيات <strong>XR</strong> — تجمع ٣ عوالم:<br>
+    🥽 <strong>VR</strong> — تدخل بيئة افتراضية كاملة<br>
+    📱 <strong>AR</strong> — تُعزز الواقع برقمي<br>
+    🌀 <strong>MR</strong> — لا فرق بين الحقيقي والرقمي<br><br>
+    نحوّل هذه التقنيات لمحتوى يبهر الجمهور ويروّج لعُمان.
+  </div>
+
+  <!-- Hashtags -->
+  <div class="insta-hashtags">
+    #الزوايا_الذهبية #GoldenAngles #XR #VR #AR #ExtendedReality #عمان #Oman #تقنية #Innovation #ImmersiveTech
+  </div>
+
+</div>
+
+</body>
+</html>
